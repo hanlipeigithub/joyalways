@@ -1,13 +1,12 @@
 # Render Blueprint — 洁雅股份官网
-# 详见 https://render.com/docs/blueprint-spec
 services:
   - type: web
     name: joyalways
-    runtime: node
+    env: node
     plan: free
     buildCommand: npm run build
     startCommand: npm start
+    healthCheckPath: /
     envVars:
       - key: NODE_VERSION
         value: "22"
-    healthCheckPath: /
