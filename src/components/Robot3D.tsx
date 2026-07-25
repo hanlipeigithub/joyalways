@@ -257,7 +257,7 @@ function SceneBackground() {
 function CameraController({ mobile = false }) {
   const { camera } = useThree()
   useEffect(() => {
-    camera.position.set(0, 0.1, mobile ? 2 : 1.8)
+    camera.position.set(0, 0.08, 4.0)
     camera.lookAt(0, 0.1, 0)
   }, [camera, mobile])
   return null
@@ -277,10 +277,10 @@ export default function Robot3D({ speaking = false, size = 120 }: Robot3DProps) 
       <Canvas
         style={{ width: '100%', height: '100%' }}
         gl={{ antialias: true, alpha: true }}
-        camera={{ position: [0, 0.1, 1.8], fov: 35 }}
+        camera={{ position: [0, 0.08, 4.0], fov: 28 }}
       >
         <CameraController mobile={mobile} />
-        <Float speed={1.2} rotationIntensity={0.1} floatIntensity={0.3}>
+        <Float speed={1.0} rotationIntensity={0.05} floatIntensity={0.03}>
           <Robot speaking={speaking} />
         </Float>
         <SceneBackground />
