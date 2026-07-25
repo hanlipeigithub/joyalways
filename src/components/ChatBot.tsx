@@ -80,11 +80,11 @@ export default function ChatBot() {
 
   return (
     <>
-      {/* 浮动按钮 — 3D 机器人 */}
+      {/* 浮动按钮 — 无边框 3D 机器人 */}
       <button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 h-16 w-16 overflow-hidden rounded-full border-2 p-0 shadow-lg transition-all duration-300 hover:scale-110"
-        style={{ borderColor: '#3b82f6', backgroundColor: '#0f172a' }}
+        className="fixed bottom-6 right-6 z-50 h-16 w-16 p-0 shadow-lg transition-all duration-300 hover:scale-110"
+        style={{ background: 'none', border: 'none' }}
       >
         <Robot3D speaking={speaking} size={64} />
       </button>
@@ -99,10 +99,10 @@ export default function ChatBot() {
             borderColor: '#374151',
           }}
         >
-          {/* 标题栏 — 3D 头像 */}
+          {/* 标题栏 — 无边框 3D 头像 */}
           <div className="flex items-center gap-3 px-4 py-3" style={{ backgroundColor: '#1d4ed8' }}>
-            <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-white/30" style={{ backgroundColor: '#0f172a' }}>
-              <Robot3D speaking={speaking} size={40} />
+            <div className="h-9 w-9 shrink-0" style={{ background: 'none' }}>
+              <Robot3D speaking={speaking} size={36} />
             </div>
             <div className="min-w-0">
               <div className="flex items-center gap-2">
@@ -117,10 +117,10 @@ export default function ChatBot() {
           <div ref={listRef} className="flex-1 overflow-y-auto px-4 py-3" style={{ backgroundColor: '#0f172a' }}>
             {messages.map((msg, i) => (
               <div key={i} className={`mb-4 flex items-start gap-2 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-                {/* 3D 头像 */}
+                {/* 无边框 3D 头像 */}
                 {msg.role === 'assistant' && (
-                  <div className="mt-0.5 h-9 w-9 shrink-0 overflow-hidden rounded-full border" style={{ borderColor: '#334155', backgroundColor: '#0f172a' }}>
-                    <Robot3D size={36} />
+                  <div className="mt-0.5 h-8 w-8 shrink-0" style={{ background: 'none' }}>
+                    <Robot3D size={32} />
                   </div>
                 )}
 
@@ -142,8 +142,8 @@ export default function ChatBot() {
             {/* 加载动画 */}
             {loading && (
               <div className="mb-4 flex items-start gap-2">
-                <div className="mt-0.5 h-9 w-9 shrink-0 overflow-hidden rounded-full border" style={{ borderColor: '#334155', backgroundColor: '#0f172a' }}>
-                  <Robot3D speaking={true} size={36} />
+                <div className="mt-0.5 h-8 w-8 shrink-0" style={{ background: 'none' }}>
+                  <Robot3D speaking={true} size={32} />
                 </div>
                 <div className="rounded-2xl rounded-bl-sm px-4 py-3" style={{ backgroundColor: '#1e293b' }}>
                   <Loader2 size={18} className="animate-spin" style={{ color: '#60a5fa' }} />
