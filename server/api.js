@@ -3,6 +3,7 @@
 import {
   db, seedAll, verifyPassword, createSession, findSessionUser, deleteSession,
 } from './db.js'
+import { initKnowledgeBase, generateAnswer } from './chat.js'
 
 const TYPES = ['news', 'notices', 'products']
 const BODY_LIMIT = 2 * 1024 * 1024 // 2MB
@@ -174,6 +175,16 @@ async function handle(req, res) {
       notices: listRows('notices', false).map((r) => rowToItem('notices', r)),
       products: listRows('products', false).map((r) => rowToItem('products', r)),
     })
+  }
+
+  /* ---- AI 智能助手 ---- */
+  if (path === '/api/chat' && method === 'POST') {
+    const b = await readBody(req)
+    const question = String(b.question || '').trim()
+    if (!question) return send(res, 400, { error: '请输入问题' })
+    initKnowledgeBase()
+    const result = generateAnswer(question)
+    return send(res, 200, result)
   }
 
   /* ---- 管理端 ---- */

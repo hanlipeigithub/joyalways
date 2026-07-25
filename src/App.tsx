@@ -16,6 +16,7 @@ import NoticesPage from '@/pages/NoticesPage'
 import NoticeDetailPage from '@/pages/NoticeDetailPage'
 import ContactPage from '@/pages/ContactPage'
 import AdminPage from '@/pages/AdminPage'
+import ChatBot from '@/components/ChatBot'
 import NotFoundPage from '@/pages/NotFoundPage'
 
 export default function App() {
@@ -42,6 +43,7 @@ export default function App() {
         <Route path="/admin" element={<AdminPage />} />
       </Routes>
       <Toaster position="top-center" richColors />
+      <ChatBot />
     </>
   )
 }
