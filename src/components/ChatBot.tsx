@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { Send, Loader2 } from 'lucide-react'
+import Robot3D from './Robot3D'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -15,8 +16,6 @@ const SUGGESTIONS = [
   '公司的发展历程',
 ]
 
-const AVATAR = '/joya-assistant.png'
-
 export default function ChatBot() {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
@@ -24,6 +23,7 @@ export default function ChatBot() {
   ])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
+  const [speaking, setSpeaking] = useState(false)
   const listRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -43,6 +43,7 @@ export default function ChatBot() {
     setMessages(prev => [...prev, { role: 'user', content: q }])
     setInput('')
     setLoading(true)
+    setSpeaking(true)
 
     try {
       const res = await fetch('/api/chat', {
@@ -60,6 +61,7 @@ export default function ChatBot() {
       setMessages(prev => [...prev, { role: 'assistant', content: '哎呀，网络好像有点问题，请稍后再试哦~😅' }])
     } finally {
       setLoading(false)
+      setTimeout(() => setSpeaking(false), 500)
     }
   }
 
@@ -78,13 +80,13 @@ export default function ChatBot() {
 
   return (
     <>
-      {/* 浮动按钮 — 用机器人头像 */}
+      {/* 浮动按钮 — 3D 机器人 */}
       <button
         onClick={() => setOpen(!open)}
         className="fixed bottom-6 right-6 z-50 h-16 w-16 overflow-hidden rounded-full border-2 p-0 shadow-lg transition-all duration-300 hover:scale-110"
-        style={{ borderColor: '#1d4ed8' }}
+        style={{ borderColor: '#3b82f6', backgroundColor: '#0f172a' }}
       >
-        <img src={AVATAR} alt="小雅" className="h-full w-full object-cover" />
+        <Robot3D speaking={speaking} size={64} />
       </button>
 
       {/* 聊天面板 */}
@@ -97,15 +99,15 @@ export default function ChatBot() {
             borderColor: '#374151',
           }}
         >
-          {/* 标题栏 — 带头像和名称 */}
+          {/* 标题栏 — 3D 头像 */}
           <div className="flex items-center gap-3 px-4 py-3" style={{ backgroundColor: '#1d4ed8' }}>
-            <div className="h-9 w-9 overflow-hidden rounded-full border-2 border-white/30 shrink-0">
-              <img src={AVATAR} alt="小雅" className="h-full w-full object-cover" />
+            <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-white/30" style={{ backgroundColor: '#0f172a' }}>
+              <Robot3D speaking={speaking} size={40} />
             </div>
             <div className="min-w-0">
               <div className="flex items-center gap-2">
                 <span className="text-base font-semibold text-white">小雅</span>
-                <span className="rounded bg-white/20 px-1.5 py-0.5 text-[10px] text-white/90">AI 助手</span>
+                <span className="rounded bg-white/20 px-1.5 py-0.5 text-[10px] text-white/90">3D AI 助手</span>
               </div>
               <span className="text-xs text-blue-100">洁雅股份智能助理</span>
             </div>
@@ -115,10 +117,10 @@ export default function ChatBot() {
           <div ref={listRef} className="flex-1 overflow-y-auto px-4 py-3" style={{ backgroundColor: '#0f172a' }}>
             {messages.map((msg, i) => (
               <div key={i} className={`mb-4 flex items-start gap-2 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-                {/* 头像 */}
+                {/* 3D 头像 */}
                 {msg.role === 'assistant' && (
-                  <div className="mt-0.5 h-8 w-8 shrink-0 overflow-hidden rounded-full border" style={{ borderColor: '#334155' }}>
-                    <img src={AVATAR} alt="小雅" className="h-full w-full object-cover" />
+                  <div className="mt-0.5 h-9 w-9 shrink-0 overflow-hidden rounded-full border" style={{ borderColor: '#334155', backgroundColor: '#0f172a' }}>
+                    <Robot3D size={36} />
                   </div>
                 )}
 
@@ -137,11 +139,11 @@ export default function ChatBot() {
               </div>
             ))}
 
-            {/* 加载动画 — 带头像 */}
+            {/* 加载动画 */}
             {loading && (
               <div className="mb-4 flex items-start gap-2">
-                <div className="mt-0.5 h-8 w-8 shrink-0 overflow-hidden rounded-full border" style={{ borderColor: '#334155' }}>
-                  <img src={AVATAR} alt="小雅" className="h-full w-full object-cover" />
+                <div className="mt-0.5 h-9 w-9 shrink-0 overflow-hidden rounded-full border" style={{ borderColor: '#334155', backgroundColor: '#0f172a' }}>
+                  <Robot3D speaking={true} size={36} />
                 </div>
                 <div className="rounded-2xl rounded-bl-sm px-4 py-3" style={{ backgroundColor: '#1e293b' }}>
                   <Loader2 size={18} className="animate-spin" style={{ color: '#60a5fa' }} />
