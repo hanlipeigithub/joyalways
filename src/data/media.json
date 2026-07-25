@@ -1,0 +1,33 @@
+{
+  "banners": [
+    "/assets/site/couch/uploads/image/index/banner1.jpg",
+    "/assets/site/couch/uploads/image/index/banner2.jpg",
+    "/assets/site/couch/uploads/image/index/banner3.jpg"
+  ],
+  "bannerTexts": [
+    "/assets/site/couch/uploads/image/index/banner1_text.png",
+    "/assets/site/couch/uploads/image/index/banner2_text.png",
+    "/assets/site/couch/uploads/image/index/banner3_text.png",
+    "/assets/site/images/index/banner1_text.png"
+  ],
+  "partners": [
+    "/assets/site/couch/uploads/image/index/c03.png",
+    "/assets/site/couch/uploads/image/index/c07.png",
+    "/assets/site/couch/uploads/image/index/c10.jpg"
+  ],
+  "map": "/assets/site/images/business_map.png",
+  "panorama": [
+    "/assets/site/couch/uploads/image/99.jpg",
+    "/assets/site/couch/uploads/image/qqq.jpg"
+  ],
+  "misc": [],
+  "manufacturing": [
+    "/assets/site/couch/uploads/image/manufacturing/mc01.jpg",
+    "/assets/site/couch/uploads/image/manufacturing/mc02.jpg",
+    "/assets/site/couch/uploads/image/manufacturing/mc03.jpg",
+    "/assets/site/couch/uploads/image/manufacturing/mc04.jpg",
+    "/assets/site/couch/uploads/image/manufacturing/mc05.jpg",
+    "/assets/site/couch/uploads/image/manufacturing/mc06.jpg",
+    "/assets/site/couch/uploads/image/research/07.jpg"
+  ]
+}

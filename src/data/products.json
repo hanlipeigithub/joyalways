@@ -1,0 +1,176 @@
+{
+  "categories": [
+    {
+      "key": "wipes",
+      "name": "干湿巾类",
+      "en": "WET & DRY WIPES"
+    },
+    {
+      "key": "beauty",
+      "name": "美容洗护类",
+      "en": "BEAUTY & CARE"
+    }
+  ],
+  "items": [
+    {
+      "id": "wipes-01",
+      "category": "wipes",
+      "title": "婴儿湿巾",
+      "desc": "专供婴儿使用，材质成分都更为温和",
+      "categories": "99.9%纯水湿巾/婴儿手口湿巾/ 婴儿卫生湿巾等",
+      "cover": "/assets/site/couch/uploads/image/product/chan-pin-tu_11_.jpg",
+      "bodyHtml": "<p>专供婴儿使用，材质成分都更为温和</p><p><strong>产品类目：</strong>99.9%纯水湿巾/婴儿手口湿巾/ 婴儿卫生湿巾等</p><p><img src=\"/assets/site/couch/uploads/image/product/chan-pin-tu_11_.jpg\" alt=\"婴儿湿巾\" loading=\"lazy\"/></p>",
+      "scene": "baby-care"
+    },
+    {
+      "id": "wipes-02",
+      "category": "wipes",
+      "title": "湿厕纸",
+      "desc": "用于擦拭私密处，较之于传统厕纸而言，舒适 性及清洁能力等更强",
+      "categories": "湿厕纸/女性护理湿巾等",
+      "cover": "/assets/site/couch/uploads/image/product/chan-pin-tu_12_.jpg",
+      "bodyHtml": "<p>用于擦拭私密处，较之于传统厕纸而言，舒适 性及清洁能力等更强</p><p><strong>产品类目：</strong>湿厕纸/女性护理湿巾等</p><p><img src=\"/assets/site/couch/uploads/image/product/chan-pin-tu_12_.jpg\" alt=\"湿厕纸\" loading=\"lazy\"/></p>",
+      "scene": "home-care"
+    },
+    {
+      "id": "wipes-03",
+      "category": "wipes",
+      "title": "个人护理湿巾",
+      "desc": "使用方便，温和安全，可根据人体不同使用部位和具体使用场景需求，产品定制开发",
+      "categories": "卸妆湿巾、抑汗湿巾、香氛湿巾、医用护理湿巾等",
+      "cover": "/assets/site/couch/uploads/image/product/chan-pin-tu_10_.jpg",
+      "bodyHtml": "<p>使用方便，温和安全，可根据人体不同使用部位和具体使用场景需求，产品定制开发</p><p><strong>产品类目：</strong>卸妆湿巾、抑汗湿巾、香氛湿巾、医用护理湿巾等</p><p><img src=\"/assets/site/couch/uploads/image/product/chan-pin-tu_10_.jpg\" alt=\"个人护理湿巾\" loading=\"lazy\"/></p>",
+      "scene": "home-care"
+    },
+    {
+      "id": "wipes-04",
+      "category": "wipes",
+      "title": "干巾",
+      "desc": "用于日常生活中面部、手部等部位的清洁，是传统纸巾、化妆棉、洗脸巾等产品的新型环保替代产品，可直接使用，也可浸湿后使用",
+      "categories": "棉柔巾、乳霜干巾等",
+      "cover": "/assets/site/couch/uploads/image/product/chan-pin-tu_13_.jpg",
+      "bodyHtml": "<p>用于日常生活中面部、手部等部位的清洁，是传统纸巾、化妆棉、洗脸巾等产品的新型环保替代产品，可直接使用，也可浸湿后使用</p><p><strong>产品类目：</strong>棉柔巾、乳霜干巾等</p><p><img src=\"/assets/site/couch/uploads/image/product/chan-pin-tu_13_.jpg\" alt=\"干巾\" loading=\"lazy\"/></p>",
+      "scene": "home-care"
+    },
+    {
+      "id": "wipes-05",
+      "category": "wipes",
+      "title": "抗菌消毒",
+      "desc": "适量添加消毒剂等原材料，制成具有清洁与消毒作用的产品，适用于人体、一般物体表面、医疗器械表面及其他物体表面",
+      "categories": "卫生湿巾、消毒湿巾等",
+      "cover": "/assets/site/couch/uploads/image/product/chan-pin-tu_14_.jpg",
+      "bodyHtml": "<p>适量添加消毒剂等原材料，制成具有清洁与消毒作用的产品，适用于人体、一般物体表面、医疗器械表面及其他物体表面</p><p><strong>产品类目：</strong>卫生湿巾、消毒湿巾等</p><p><img src=\"/assets/site/couch/uploads/image/product/chan-pin-tu_14_.jpg\" alt=\"抗菌消毒\" loading=\"lazy\"/></p>",
+      "scene": "medical-care"
+    },
+    {
+      "id": "wipes-06",
+      "category": "wipes",
+      "title": "家清湿巾",
+      "desc": "以湿巾为载体，满足家居清洁的各方面需求，为年轻人精简家务",
+      "categories": "汽车湿巾、厨房湿巾、玻璃湿巾、鞋用湿巾、地板湿巾、卫浴湿巾、宠物湿巾等",
+      "cover": "/assets/site/couch/uploads/image/5bbcd1c4420d88852ec6ebaf4fe57053_shicezhi_3_.jpg",
+      "bodyHtml": "<p>以湿巾为载体，满足家居清洁的各方面需求，为年轻人精简家务</p><p><strong>产品类目：</strong>汽车湿巾、厨房湿巾、玻璃湿巾、鞋用湿巾、地板湿巾、卫浴湿巾、宠物湿巾等</p><p><img src=\"/assets/site/couch/uploads/image/5bbcd1c4420d88852ec6ebaf4fe57053_shicezhi_3_.jpg\" alt=\"家清湿巾\" loading=\"lazy\"/></p>",
+      "scene": "home-care"
+    },
+    {
+      "id": "beauty-01",
+      "category": "beauty",
+      "title": "化妆水",
+      "desc": "化妆水通常是在用洁面剂等洗净皮肤上的污垢后，为给皮肤的角质层补充水分及保湿成分，以调整皮肤生理作用为目的而使用的护肤品。 化妆水是将不易溶于水的成分通过增溶处理，利用热力学原理使其更加稳定，从而生产制造出来的一种外观透明的液体，分为单层型和多层型两类。",
+      "categories": "化妆水 爽肤水 精华水等等",
+      "cover": "/assets/site/couch/uploads/image/product/chan-pin-tu2.png",
+      "bodyHtml": "<p>化妆水通常是在用洁面剂等洗净皮肤上的污垢后，为给皮肤的角质层补充水分及保湿成分，以调整皮肤生理作用为目的而使用的护肤品。 化妆水是将不易溶于水的成分通过增溶处理，利用热力学原理使其更加稳定，从而生产制造出来的一种外观透明的液体，分为单层型和多层型两类。</p><p><strong>产品类目：</strong>化妆水 爽肤水 精华水等等</p><p><img src=\"/assets/site/couch/uploads/image/product/chan-pin-tu2.png\" alt=\"化妆水\" loading=\"lazy\"/></p>",
+      "scene": "beauty-care"
+    },
+    {
+      "id": "beauty-02",
+      "category": "beauty",
+      "title": "乳液",
+      "desc": "乳化制品的黏度较低，在重力的作用下可倾倒，这样的乳化制品称为乳液。 护肤乳液是以保持皮肤、特别是皮肤最外面角质层中适度水分为目的而使用的化妆品。其特点是维持皮肤水油平衡，给皮肤提供水分、保湿剂、油分，并能作为活性成分的载体，使之为皮肤吸收，达到调理和营养皮肤的目的。",
+      "categories": "乳液 身体乳 婴幼儿乳液 防晒乳等等",
+      "cover": "/assets/site/couch/uploads/image/product/chan-pin-tu_3_.jpg",
+      "bodyHtml": "<p>乳化制品的黏度较低，在重力的作用下可倾倒，这样的乳化制品称为乳液。 护肤乳液是以保持皮肤、特别是皮肤最外面角质层中适度水分为目的而使用的化妆品。其特点是维持皮肤水油平衡，给皮肤提供水分、保湿剂、油分，并能作为活性成分的载体，使之为皮肤吸收，达到调理和营养皮肤的目的。</p><p><strong>产品类目：</strong>乳液 身体乳 婴幼儿乳液 防晒乳等等</p><p><img src=\"/assets/site/couch/uploads/image/product/chan-pin-tu_3_.jpg\" alt=\"乳液\" loading=\"lazy\"/></p>",
+      "scene": "beauty-care"
+    },
+    {
+      "id": "beauty-03",
+      "category": "beauty",
+      "title": "膏霜",
+      "desc": "护肤膏霜是一类具有护肤作用的乳化型产品，按外观状态区分，可有霜（质地软）、膏（质地硬）；按含油量区分，可有雪花膏、中性膏霜（润肤霜）和香脂；按乳化剂型区分可有水包油（o/w）、油包水（w/o）、复合乳化型（w/o/w或o/w/o）。 膏霜可覆盖于皮肤表面形成油性保护膜，有效锁住水分和养分，使肌肤保持润泽状态。还可修复细纹，深化活性细胞，为皮肤补充胶原蛋白。",
+      "categories": "隔离霜 按摩霜 眼霜 手霜 日霜 晚霜等等",
+      "cover": "/assets/site/couch/uploads/image/product/chan-pin-tu_2_.jpg",
+      "bodyHtml": "<p>护肤膏霜是一类具有护肤作用的乳化型产品，按外观状态区分，可有霜（质地软）、膏（质地硬）；按含油量区分，可有雪花膏、中性膏霜（润肤霜）和香脂；按乳化剂型区分可有水包油（o/w）、油包水（w/o）、复合乳化型（w/o/w或o/w/o）。 膏霜可覆盖于皮肤表面形成油性保护膜，有效锁住水分和养分，使肌肤保持润泽状态。还可修复细纹，深化活性细胞，为皮肤补充胶原蛋白。</p><p><strong>产品类目：</strong>隔离霜 按摩霜 眼霜 手霜 日霜 晚霜等等</p><p><img src=\"/assets/site/couch/uploads/image/product/chan-pin-tu_2_.jpg\" alt=\"膏霜\" loading=\"lazy\"/></p>",
+      "scene": "beauty-care"
+    },
+    {
+      "id": "beauty-04",
+      "category": "beauty",
+      "title": "精华",
+      "desc": "精华是一种富含丰富营养成分的护肤品，一般有液体、乳化体、啫喱状等状态。使用部位除了面部、还有头皮、身体躯干、手足部等部位。 主要作用是美白补水保湿、能真正改善皮肤、精准修护皮肤问题、升华肌肤健康。",
+      "categories": "精华液 精华乳 多层精华 精华啫喱等等",
+      "cover": "/assets/site/couch/uploads/image/product/chan-pin-tu_4_.jpg",
+      "bodyHtml": "<p>精华是一种富含丰富营养成分的护肤品，一般有液体、乳化体、啫喱状等状态。使用部位除了面部、还有头皮、身体躯干、手足部等部位。 主要作用是美白补水保湿、能真正改善皮肤、精准修护皮肤问题、升华肌肤健康。</p><p><strong>产品类目：</strong>精华液 精华乳 多层精华 精华啫喱等等</p><p><img src=\"/assets/site/couch/uploads/image/product/chan-pin-tu_4_.jpg\" alt=\"精华\" loading=\"lazy\"/></p>",
+      "scene": "beauty-care"
+    },
+    {
+      "id": "beauty-05",
+      "category": "beauty",
+      "title": "膜类",
+      "desc": "涂或敷于人体皮肤表面，经一段时间后揭离、擦洗或保留，起到集中护理或清洁作用的面膜产品。根据剂型的不同，使用场景也不同。 现公司已经开发出各类功能性面膜和含有其它特殊素材的剂型产品，用以满足不同客户的实际需求。",
+      "categories": "敷贴式面膜 眼膜 手足膜 泥膜 膏霜型 凝胶型等等",
+      "cover": "/assets/site/couch/uploads/image/product/chan-pin-tu_5_.jpg",
+      "bodyHtml": "<p>涂或敷于人体皮肤表面，经一段时间后揭离、擦洗或保留，起到集中护理或清洁作用的面膜产品。根据剂型的不同，使用场景也不同。 现公司已经开发出各类功能性面膜和含有其它特殊素材的剂型产品，用以满足不同客户的实际需求。</p><p><strong>产品类目：</strong>敷贴式面膜 眼膜 手足膜 泥膜 膏霜型 凝胶型等等</p><p><img src=\"/assets/site/couch/uploads/image/product/chan-pin-tu_5_.jpg\" alt=\"膜类\" loading=\"lazy\"/></p>",
+      "scene": "beauty-care"
+    },
+    {
+      "id": "beauty-06",
+      "category": "beauty",
+      "title": "卸妆",
+      "desc": "皮肤清洁产品，用于清除皮肤上的多余皮脂、代谢产物、残留的彩妆以及外部环境导致的污染物等问题。 化妆一方面可以增加美丽、提升自信，另一方面体现了社交礼仪上的尊重。而清洁是化妆的基础，深度清洁可以塑造完美底妆、提升妆容质量。",
+      "categories": "卸妆水 卸妆乳 卸妆霜 卸妆啫喱 卸妆油 卸妆膏",
+      "cover": "/assets/site/couch/uploads/image/product/chan-pin-tu_6_.jpg",
+      "bodyHtml": "<p>皮肤清洁产品，用于清除皮肤上的多余皮脂、代谢产物、残留的彩妆以及外部环境导致的污染物等问题。 化妆一方面可以增加美丽、提升自信，另一方面体现了社交礼仪上的尊重。而清洁是化妆的基础，深度清洁可以塑造完美底妆、提升妆容质量。</p><p><strong>产品类目：</strong>卸妆水 卸妆乳 卸妆霜 卸妆啫喱 卸妆油 卸妆膏</p><p><img src=\"/assets/site/couch/uploads/image/product/chan-pin-tu_6_.jpg\" alt=\"卸妆\" loading=\"lazy\"/></p>",
+      "scene": "beauty-care"
+    },
+    {
+      "id": "beauty-07",
+      "category": "beauty",
+      "title": "洁肤",
+      "desc": "具有清洁皮肤表面附着的污垢、去除角质、保湿、柔肤等一系列功能。",
+      "categories": "洗面奶 洗面膏 沐浴露 沐浴液 沐浴油等",
+      "cover": "/assets/site/couch/uploads/image/product/chan-pin-tu_7_.jpg",
+      "bodyHtml": "<p>具有清洁皮肤表面附着的污垢、去除角质、保湿、柔肤等一系列功能。</p><p><strong>产品类目：</strong>洗面奶 洗面膏 沐浴露 沐浴液 沐浴油等</p><p><img src=\"/assets/site/couch/uploads/image/product/chan-pin-tu_7_.jpg\" alt=\"洁肤\" loading=\"lazy\"/></p>",
+      "scene": "beauty-care"
+    },
+    {
+      "id": "beauty-08",
+      "category": "beauty",
+      "title": "儿童系列",
+      "desc": "婴幼儿及儿童用产品，以天然植物精华为配方，温和无刺激且外观设计安全。",
+      "categories": "婴儿乳液 婴儿霜 婴儿油 婴儿沐浴露",
+      "cover": "/assets/site/couch/uploads/image/product/chan-pin-tu_8_.jpg",
+      "bodyHtml": "<p>婴幼儿及儿童用产品，以天然植物精华为配方，温和无刺激且外观设计安全。</p><p><strong>产品类目：</strong>婴儿乳液 婴儿霜 婴儿油 婴儿沐浴露</p><p><img src=\"/assets/site/couch/uploads/image/product/chan-pin-tu_8_.jpg\" alt=\"儿童系列\" loading=\"lazy\"/></p>",
+      "scene": "baby-care"
+    },
+    {
+      "id": "beauty-09",
+      "category": "beauty",
+      "title": "发用系列",
+      "desc": "针对头发护理并且可以长期使用的护发产品。",
+      "categories": "洗发水 护发素 护发精油 发膜 发蜡 定性啫喱",
+      "cover": "/assets/site/couch/uploads/image/product/chan-pin-tu_9_.jpg",
+      "bodyHtml": "<p>针对头发护理并且可以长期使用的护发产品。</p><p><strong>产品类目：</strong>洗发水 护发素 护发精油 发膜 发蜡 定性啫喱</p><p><img src=\"/assets/site/couch/uploads/image/product/chan-pin-tu_9_.jpg\" alt=\"发用系列\" loading=\"lazy\"/></p>",
+      "scene": "beauty-care"
+    },
+    {
+      "id": "beauty-10",
+      "category": "beauty",
+      "title": "医美系列",
+      "desc": "人类Ⅲ型胶原蛋白，用于强化皮肤弹性，是维持皮肤饱满、滑润、有光泽的重要元素。Ⅲ型胶原形成的纤维，在伤口无痕愈合中发挥重要作用。 人类Ⅲ型胶原蛋白能够人为增加创面中的Ⅲ型胶原蛋白沉积，不仅能促进全层皮肤创面的愈合，而且能同时改善创面愈合质量，减轻瘢痕形成。 具有清洁皮肤表面附着的污垢、去除角质、保湿、柔肤等一系列功能。",
+      "categories": "二类医疗器械 重组胶原蛋白敷料贴 液体敷料等",
+      "cover": "/assets/site/couch/uploads/image/product/yi-liao-qi-xie-pei-tu.jpg",
+      "bodyHtml": "<p>人类Ⅲ型胶原蛋白，用于强化皮肤弹性，是维持皮肤饱满、滑润、有光泽的重要元素。Ⅲ型胶原形成的纤维，在伤口无痕愈合中发挥重要作用。 人类Ⅲ型胶原蛋白能够人为增加创面中的Ⅲ型胶原蛋白沉积，不仅能促进全层皮肤创面的愈合，而且能同时改善创面愈合质量，减轻瘢痕形成。 具有清洁皮肤表面附着的污垢、去除角质、保湿、柔肤等一系列功能。</p><p><strong>产品类目：</strong>二类医疗器械 重组胶原蛋白敷料贴 液体敷料等</p><p><img src=\"/assets/site/couch/uploads/image/product/yi-liao-qi-xie-pei-tu.jpg\" alt=\"医美系列\" loading=\"lazy\"/></p>",
+      "scene": "medical-care"
+    }
+  ]
+}

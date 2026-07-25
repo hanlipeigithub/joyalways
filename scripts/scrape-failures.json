@@ -1,0 +1,26 @@
+[
+  {
+    "url": "https://www.joyalways.com/couch/uploads/image/news/initpintu_fu-ben.jpg",
+    "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://www.joyalways.com/couch/uploads/image/about/wei-xin-tu-pian_20260604171635_668_111.jpg",
+    "error": "skipped: 11762KB > 5MB"
+  },
+  {
+    "url": "https://www.joyalways.com/couch/uploads/image/2017nian-sheng-lao-dong-jing-sai-xian-jin-ji-ti.jpg",
+    "error": "skipped: 6694KB > 5MB"
+  },
+  {
+    "url": "https://www.joyalways.com/images/yanfa/woweare.png",
+    "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://www.joyalways.com/images/yanfa/woweare.png",
+    "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://www.joyalways.com/images/yanfa/woweare.png",
+    "error": "HTTPError: HTTP Error 404: Not Found"
+  }
+]

@@ -1,0 +1,8 @@
+node_modules/
+dist/
+server/data/
+server/.prod.pid
+server/prod.log
+*.db
+.env
+.env.local

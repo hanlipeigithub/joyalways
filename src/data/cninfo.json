@@ -1,0 +1,363 @@
+{
+  "source": "巨潮资讯网 cninfo.com.cn",
+  "stock": "301108",
+  "fetchedAt": "2026-07-24T15:26:49",
+  "periodic": [
+    {
+      "id": "1225198338",
+      "title": "2026年一季度报告",
+      "date": "2026-04-28",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-28/1225198338.PDF",
+      "sizeKB": 269,
+      "kind": "一季度报告"
+    },
+    {
+      "id": "1225087319",
+      "title": "2025年年度报告",
+      "date": "2026-04-10",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-10/1225087319.PDF",
+      "sizeKB": 1562,
+      "kind": "年度报告"
+    },
+    {
+      "id": "1224727226",
+      "title": "2025年三季度报告",
+      "date": "2025-10-24",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2025-10-24/1224727226.PDF",
+      "sizeKB": 275,
+      "kind": "三季度报告"
+    },
+    {
+      "id": "1224587921",
+      "title": "2025年半年度报告",
+      "date": "2025-08-28",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2025-08-28/1224587921.PDF",
+      "sizeKB": 1428,
+      "kind": "半年度报告"
+    },
+    {
+      "id": "1223266257",
+      "title": "2024年年度报告",
+      "date": "2025-04-25",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2025-04-25/1223266257.PDF",
+      "sizeKB": 1587,
+      "kind": "年度报告"
+    },
+    {
+      "id": "1223270177",
+      "title": "2025年一季度报告",
+      "date": "2025-04-25",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2025-04-25/1223270177.PDF",
+      "sizeKB": 258,
+      "kind": "一季度报告"
+    },
+    {
+      "id": "1221553962",
+      "title": "2024年三季度报告",
+      "date": "2024-10-30",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2024-10-30/1221553962.PDF",
+      "sizeKB": 252,
+      "kind": "三季度报告"
+    },
+    {
+      "id": "1221000669",
+      "title": "2024年半年度报告",
+      "date": "2024-08-28",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2024-08-28/1221000669.PDF",
+      "sizeKB": 1484,
+      "kind": "半年度报告"
+    },
+    {
+      "id": "1219817206",
+      "title": "2024年一季度报告",
+      "date": "2024-04-26",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2024-04-26/1219817206.PDF",
+      "sizeKB": 251,
+      "kind": "一季度报告"
+    },
+    {
+      "id": "1219695033",
+      "title": "2023年年度报告",
+      "date": "2024-04-20",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2024-04-20/1219695033.PDF",
+      "sizeKB": 1399,
+      "kind": "年度报告"
+    },
+    {
+      "id": "1218196123",
+      "title": "2023年第三季度报告（更正后）",
+      "date": "2023-10-30",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2023-10-30/1218196123.PDF",
+      "sizeKB": 428,
+      "kind": "三季度报告"
+    },
+    {
+      "id": "1218183739",
+      "title": "2023年三季度报告",
+      "date": "2023-10-30",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2023-10-30/1218183739.PDF",
+      "sizeKB": 407,
+      "kind": "三季度报告"
+    },
+    {
+      "id": "1217690056",
+      "title": "2023年半年度报告",
+      "date": "2023-08-30",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2023-08-30/1217690056.PDF",
+      "sizeKB": 1156,
+      "kind": "半年度报告"
+    },
+    {
+      "id": "1216471026",
+      "title": "2022年年度报告",
+      "date": "2023-04-20",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2023-04-20/1216471026.PDF",
+      "sizeKB": 1334,
+      "kind": "年度报告"
+    },
+    {
+      "id": "1216471042",
+      "title": "2023年一季度报告",
+      "date": "2023-04-20",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2023-04-20/1216471042.PDF",
+      "sizeKB": 252,
+      "kind": "一季度报告"
+    },
+    {
+      "id": "1214934677",
+      "title": "2022年三季度报告",
+      "date": "2022-10-28",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2022-10-28/1214934677.PDF",
+      "sizeKB": 237,
+      "kind": "三季度报告"
+    },
+    {
+      "id": "1214400320",
+      "title": "2022年半年度报告",
+      "date": "2022-08-26",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2022-08-26/1214400320.PDF",
+      "sizeKB": 1098,
+      "kind": "半年度报告"
+    },
+    {
+      "id": "1213126510",
+      "title": "2022年一季度报告",
+      "date": "2022-04-27",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2022-04-27/1213126510.PDF",
+      "sizeKB": 399,
+      "kind": "一季度报告"
+    }
+  ],
+  "latest": [
+    {
+      "id": "1225413323",
+      "title": "安徽天禾律师事务所关于铜陵洁雅生物科技股份有限公司授予部分预留限制性股票及取消授予剩余预留限制性股票相关事项之法律意见书",
+      "date": "2026-07-07",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-07-07/1225413323.PDF",
+      "sizeKB": 243
+    },
+    {
+      "id": "1225413321",
+      "title": "2025年限制性股票激励计划预留授予激励对象名单（预留授予日）",
+      "date": "2026-07-07",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-07-07/1225413321.PDF",
+      "sizeKB": 84
+    },
+    {
+      "id": "1225413320",
+      "title": "第六届董事会第十次会议决议公告",
+      "date": "2026-07-07",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-07-07/1225413320.PDF",
+      "sizeKB": 98
+    },
+    {
+      "id": "1225413324",
+      "title": "董事会薪酬与考核委员会关于公司 2025 年限制性股票激励计划预留授予激励对象名单（预留授予日）及授予价格调整的核查意见",
+      "date": "2026-07-07",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-07-07/1225413324.PDF",
+      "sizeKB": 89
+    },
+    {
+      "id": "1225413322",
+      "title": "关于向2025年限制性股票激励计划激励对象授予部分预留限制性股票及取消授予剩余预留限制性股票的公告",
+      "date": "2026-07-07",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-07-07/1225413322.PDF",
+      "sizeKB": 214
+    },
+    {
+      "id": "1225413319",
+      "title": "关于调整2025年限制性股票激励计划授予价格的公告",
+      "date": "2026-07-07",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-07-07/1225413319.PDF",
+      "sizeKB": 108
+    },
+    {
+      "id": "1225402802",
+      "title": "关于对外担保的进展公告",
+      "date": "2026-07-01",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-07-01/1225402802.PDF",
+      "sizeKB": 84
+    },
+    {
+      "id": "1225398274",
+      "title": "关于更换保荐代表人的公告",
+      "date": "2026-06-30",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-06-30/1225398274.PDF",
+      "sizeKB": 107
+    },
+    {
+      "id": "1225380435",
+      "title": "关于公司股东减持股份实施情况公告",
+      "date": "2026-06-22",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-06-22/1225380435.PDF",
+      "sizeKB": 96
+    },
+    {
+      "id": "1225318993",
+      "title": "关于获得政府补助的进展公告",
+      "date": "2026-05-20",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-05-20/1225318993.PDF",
+      "sizeKB": 68
+    },
+    {
+      "id": "1225302337",
+      "title": "2025年度分红派息实施公告",
+      "date": "2026-05-13",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-05-13/1225302337.PDF",
+      "sizeKB": 111
+    },
+    {
+      "id": "1225278578",
+      "title": "关于获得政府补助的公告",
+      "date": "2026-05-06",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-05-06/1225278578.PDF",
+      "sizeKB": 69
+    },
+    {
+      "id": "1225273062",
+      "title": "关于铜陵洁雅生物科技股份有限公司2025年年度股东会法律意见书",
+      "date": "2026-04-30",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-30/1225273062.PDF",
+      "sizeKB": 161
+    },
+    {
+      "id": "1225273061",
+      "title": "2025年年度股东会决议公告",
+      "date": "2026-04-30",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-30/1225273061.PDF",
+      "sizeKB": 127
+    },
+    {
+      "id": "1225198350",
+      "title": "关于铜陵洁雅生物科技股份有限公司作废部分已授予尚未归属的限制性股票相关事项之法律意见书",
+      "date": "2026-04-28",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-28/1225198350.PDF",
+      "sizeKB": 141
+    },
+    {
+      "id": "1225198349",
+      "title": "关于作废部分已授予尚未归属的限制性股票的公告",
+      "date": "2026-04-28",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-28/1225198349.PDF",
+      "sizeKB": 106
+    },
+    {
+      "id": "1225198342",
+      "title": "关于向银行申请综合授信额度的公告",
+      "date": "2026-04-28",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-28/1225198342.PDF",
+      "sizeKB": 66
+    },
+    {
+      "id": "1225198341",
+      "title": "关于公司2026年度日常关联交易预计的公告",
+      "date": "2026-04-28",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-28/1225198341.PDF",
+      "sizeKB": 154
+    },
+    {
+      "id": "1225198340",
+      "title": "第六届董事会第九次会议决议公告",
+      "date": "2026-04-28",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-28/1225198340.PDF",
+      "sizeKB": 108
+    },
+    {
+      "id": "1225198338",
+      "title": "2026年一季度报告",
+      "date": "2026-04-28",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-28/1225198338.PDF",
+      "sizeKB": 269
+    },
+    {
+      "id": "1225097170",
+      "title": "关于公司高级管理人员离任的公告",
+      "date": "2026-04-13",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-13/1225097170.pdf",
+      "sizeKB": 70
+    },
+    {
+      "id": "1225087346",
+      "title": "国融证券股份有限公司关于铜陵洁雅生物科技股份有限公司2025年度募集资金存放、管理与使用情况的专项核查报告",
+      "date": "2026-04-10",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-10/1225087346.PDF",
+      "sizeKB": 340
+    },
+    {
+      "id": "1225087345",
+      "title": "关于续聘2026年度审计机构的公告",
+      "date": "2026-04-10",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-10/1225087345.PDF",
+      "sizeKB": 121
+    },
+    {
+      "id": "1225087344",
+      "title": "2025年度董事会工作报告",
+      "date": "2026-04-10",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-10/1225087344.PDF",
+      "sizeKB": 171
+    },
+    {
+      "id": "1225087343",
+      "title": "2025年度总经理工作报告",
+      "date": "2026-04-10",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-10/1225087343.PDF",
+      "sizeKB": 157
+    },
+    {
+      "id": "1225087342",
+      "title": "2026年度董事、高级管理人员薪酬方案",
+      "date": "2026-04-10",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-10/1225087342.PDF",
+      "sizeKB": 86
+    },
+    {
+      "id": "1225087341",
+      "title": "2025年度独立董事述职报告（何文龙）",
+      "date": "2026-04-10",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-10/1225087341.PDF",
+      "sizeKB": 144
+    },
+    {
+      "id": "1225087340",
+      "title": "2025年度独立董事述职报告（陈彦）",
+      "date": "2026-04-10",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-10/1225087340.PDF",
+      "sizeKB": 131
+    },
+    {
+      "id": "1225087339",
+      "title": "2025年度独立董事述职报告（赵波）",
+      "date": "2026-04-10",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-10/1225087339.PDF",
+      "sizeKB": 149
+    },
+    {
+      "id": "1225087338",
+      "title": "关于举行2025年度网上业绩说明会的公告",
+      "date": "2026-04-10",
+      "pdf": "http://static.cninfo.com.cn/finalpage/2026-04-10/1225087338.PDF",
+      "sizeKB": 91
+    }
+  ]
+}
