@@ -1,5 +1,6 @@
 import Hero from '@/sections/Hero'
 import StatsBand from '@/sections/StatsBand'
+import VideoShowcase from '@/sections/VideoShowcase'
 import GlobalMap from '@/sections/GlobalMap'
 import SmartFactory from '@/sections/SmartFactory'
 import RndInnovation from '@/sections/RndInnovation'
@@ -16,7 +17,9 @@ export default function HomePage() {
       <Hero />
       {/* 2. 企业实力数字带 */}
       <StatsBand />
-      {/* 3. 全球布局交互地图 */}
+      {/* 3. 视频展示 */}
+      <VideoShowcase />
+      {/* 4. 全球布局交互地图 */}
       <GlobalMap />
       {/* 4. 智能制造 */}
       <SmartFactory />

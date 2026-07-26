@@ -8,7 +8,6 @@ import mediaJson from '@/data/media.json'
 
 const MEDIA = mediaJson as { banners: string[]; manufacturing: string[] }
 
-/** 真实素材多层 Ken Burns 轮播：品牌 banner + 智能制造概念图 */
 const SLIDES = [
   ...[...MEDIA.banners].sort(),
   '/images/hero-slide4.jpg',
@@ -28,6 +27,18 @@ export default function Hero() {
 
   return (
     <section id="top" className="relative flex min-h-screen flex-col overflow-hidden bg-joy-navy">
+      {/* 背景视频 */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover opacity-40"
+        poster={SLIDES[0]}
+      >
+        <source src="/videos/production-line.mp4" type="video/mp4" />
+      </video>
+
       {/* Ken Burns 多层轮播 */}
       {SLIDES.map((src, i) => (
         <div
