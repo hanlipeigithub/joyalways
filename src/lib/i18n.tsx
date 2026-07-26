@@ -94,6 +94,121 @@ const zh = {
   'digital.eyebrow': 'DIGITAL JOYALWAYS',
   'digital.title': '数字洁雅 · AI 数字化专区',
   'digital.desc': 'AI、SAP、MES、工业互联网、数字工厂、数字孪生与 AI Agent 的能力全景。',
+
+  /* ---- 招聘页 Careers ---- */
+  'careers.hero.badge': 'JOIN US · 加入洁雅',
+  'careers.hero.title1': '与洁雅一起',
+  'careers.hero.title2': '共创未来',
+  'careers.hero.desc': '人人皆可成才、人人尽展其才。加入洁雅股份，在全球个人护理智能制造舞台上，成就你的职业梦想。',
+  'careers.hero.cta1': '查看在招岗位',
+  'careers.hero.cta2': '投递简历',
+
+  'careers.why.eyebrow': 'WHY JOYALWAYS',
+  'careers.why.title': '选择洁雅的',
+  'careers.why.title.highlight': '理由',
+
+  'careers.brand.growth': '员工成长',
+  'careers.brand.growth.desc': '完善的培养体系与晋升通道，让每一位伙伴与企业共同成长。完善的培训机制，从入职引导到专业技能提升，助力职业发展每一步。',
+  'careers.brand.rnd': '研发环境',
+  'careers.brand.rnd.desc': '理化与微生物检验检测中心，配备一流实验仪器设备，为技术人才提供国际水平的研发平台。与国内外知名高校保持深度产学研合作。',
+  'careers.brand.workplace': '办公环境',
+  'careers.brand.workplace.desc': '220,000㎡+ 现代化制造基地，GMP 级洁净车间、智能仓储与舒适办公空间，美国与埃及海外工厂提供国际化工作机会。',
+  'careers.brand.culture': '企业文化',
+  'careers.brand.culture.desc': '"人人皆可成才、人人尽展其才"。开放、务实、长期主义的企业氛围，信任信心、关爱尊重、共创共赢的核心价值观。',
+
+  'careers.positions.eyebrow': 'OPEN POSITIONS',
+  'careers.positions.title': '在招',
+  'careers.positions.title.highlight': '岗位',
+  'careers.positions.desc': '以下为洁雅股份当前热招岗位，欢迎投递简历',
+
+  'careers.job.equipment': '设备操作工',
+  'careers.job.equipment.desc': '负责自动化生产线的日常操作与维护，确保设备高效稳定运行。具备机械/电气基础知识者优先。',
+  'careers.job.english': '英语专员',
+  'careers.job.english.desc': '负责海外客户沟通、英文文件翻译及国际业务对接。英语专业八级或同等水平，有外贸经验优先。',
+  'careers.job.process': '工艺技术员',
+  'careers.job.process.desc': '负责湿巾生产工艺的优化与改进，解决生产过程中的技术问题。化工/材料相关专业。',
+  'careers.job.rnd': '研发工程师',
+  'careers.job.rnd.desc': '负责新配方、新产品的研发工作，包括配方设计、稳定性测试及工艺放大。硕士及以上学历优先。',
+  'careers.job.qc': 'QC主管',
+  'careers.job.qc.desc': '负责质量管理体系的运行与维护，带领团队完成来料、过程及出货检验。熟悉ISO/GMP体系。',
+  'careers.job.design': '产品设计总监',
+  'careers.job.design.desc': '负责产品线规划与设计策略制定，领导设计团队完成从概念到量产的全流程。',
+  'careers.job.finance': '财务经理',
+  'careers.job.finance.desc': '负责公司财务核算、预算管理、税务筹划及财务分析。持有CPA或中级以上职称。',
+  'careers.job.apply': '投递该岗位',
+
+  'careers.benefits.eyebrow': 'BENEFITS',
+  'careers.benefits.title': '公司',
+  'careers.benefits.title.highlight': '福利',
+
+  'careers.benefit.insurance': '五险一金',
+  'careers.benefit.bonus': '绩效奖金',
+  'careers.benefit.meal': '用餐补贴',
+  'careers.benefit.phone': '通讯补贴',
+  'careers.benefit.fuel': '油卡补贴',
+  'careers.benefit.checkup': '年度体检',
+
+  'careers.cta.title': '投递简历 / 咨询岗位',
+  'careers.cta.hr': '人事热线：0562-2201781',
+  'careers.cta.email': 'jieyahr@babywipes.com.cn',
+  'careers.cta.footer': '铜陵洁雅生物科技股份有限公司 · 人力资源部',
+
+  /* ---- 联系页 Contact ---- */
+  'contact.hero.badge': 'CONTACT US',
+  'contact.hero.title1': '联系',
+  'contact.hero.title2': '洁雅',
+  'contact.hero.desc': '产品合作、OEM / ODM 代工咨询、投资者问询、人才加盟 —— 洁雅期待听到您的声音。',
+  'contact.hero.phone': '0562-2201781',
+  'contact.hero.email': '发送邮件',
+
+  'contact.company': '铜陵洁雅生物科技股份有限公司',
+  'contact.company.en': 'TONGLING JOYALWAYS BIO-TECHNOLOGY CO., LTD.',
+
+  'contact.address': '公司地址',
+  'contact.address.detail': '安徽省铜陵市狮子山经济开发区地质大道528号',
+  'contact.hotline': '热线电话',
+  'contact.email': '邮箱',
+  'contact.fax': '传真（证券事务）',
+  'contact.fax.detail': '0562-6868001',
+
+  'contact.dept.overseas': '海外业务',
+  'contact.dept.overseas.desc': '国际市场拓展、OEM/ODM 海外代工合作',
+  'contact.dept.domestic': '国内业务',
+  'contact.dept.domestic.desc': '国内市场销售、品牌合作、渠道代理',
+  'contact.dept.hr': '人力资源',
+  'contact.dept.hr.desc': '人才招聘、岗位咨询、员工关系',
+  'contact.dept.medical': '医疗器械',
+  'contact.dept.medical.desc': '医疗器械业务合作、产品咨询',
+
+  'contact.depts.eyebrow': 'DEPARTMENTS',
+  'contact.depts.title': '业务',
+  'contact.depts.title.highlight': '对接',
+  'contact.depts.desc': '根据您的需求选择对应的业务部门直接联系',
+
+  'contact.form.title': '在线留言',
+  'contact.form.desc': '请填写以下表单，我们会尽快回复您',
+  'contact.form.name': '姓名',
+  'contact.form.phone': '电话',
+  'contact.form.message': '留言',
+  'contact.form.placeholder.name': '您的称呼',
+  'contact.form.placeholder.phone': '便于我们与您联系',
+  'contact.form.placeholder.message': '请简述您的需求，例如：产品合作 / OEM 代工 / 投资者问询…',
+  'contact.form.privacy': '我们承诺对您提交的信息严格保密。',
+  'contact.form.submit': '提交留言',
+
+  /* ---- ESG 可持续发展 ---- */
+  'esg.green.title': '绿色制造',
+  'esg.green.desc': '以清洁能源与绿色工艺打造洁净产品，FSC 认证材料与可持续供应链并行。',
+  'esg.energy.title': '节能减排',
+  'esg.energy.desc': '持续优化产线能耗与废弃物管理，让每一分资源都物尽其用。',
+  'esg.social.title': '社会责任',
+  'esg.social.desc': '回馈社区、关爱员工，以企业公民的责任心践行长期主义。',
+
+  /* ---- 服务国家/年销售额等 ---- */
+  'stats.years': '年',
+  'stats.sqm': '㎡+',
+  'stats.items': '项+',
+  'stats.billion': '亿',
 }
 
 const en: Record<keyof typeof zh, string> = {
@@ -183,6 +298,121 @@ const en: Record<keyof typeof zh, string> = {
   'digital.eyebrow': 'DIGITAL JOYALWAYS',
   'digital.title': 'Digital Joyalways · AI Zone',
   'digital.desc': 'AI, SAP, MES, Industrial Internet, digital factory, digital twin and AI Agent capabilities.',
+
+  /* ---- 招聘页 Careers ---- */
+  'careers.hero.badge': 'JOIN US',
+  'careers.hero.title1': 'Shape the Future',
+  'careers.hero.title2': 'with Joyalways',
+  'careers.hero.desc': 'Everyone can grow. Everyone can shine. Join Joyalways and build your career on the global stage of personal care smart manufacturing.',
+  'careers.hero.cta1': 'View Openings',
+  'careers.hero.cta2': 'Submit Resume',
+
+  'careers.why.eyebrow': 'WHY JOYALWAYS',
+  'careers.why.title': 'Reasons to Choose',
+  'careers.why.title.highlight': 'Joyalways',
+
+  'careers.brand.growth': 'Growth',
+  'careers.brand.growth.desc': 'A comprehensive training system and clear promotion pathways — every member grows together with the company.',
+  'careers.brand.rnd': 'R&D Environment',
+  'careers.brand.rnd.desc': 'State-of-the-art physicochemical & microbiological labs, providing world-class R&D platforms for technical talent.',
+  'careers.brand.workplace': 'Workplace',
+  'careers.brand.workplace.desc': '220,000㎡+ modern manufacturing base with GMP cleanrooms, smart warehouses, and overseas opportunities in the US and Egypt.',
+  'careers.brand.culture': 'Culture',
+  'careers.brand.culture.desc': '"Everyone can grow, everyone can shine." Open, pragmatic, long-term oriented — built on trust, respect and shared success.',
+
+  'careers.positions.eyebrow': 'OPEN POSITIONS',
+  'careers.positions.title': 'Open',
+  'careers.positions.title.highlight': 'Positions',
+  'careers.positions.desc': 'Current openings at Joyalways. We look forward to your application.',
+
+  'careers.job.equipment': 'Equipment Operator',
+  'careers.job.equipment.desc': 'Responsible for daily operation and maintenance of automated production lines. Mechanical/electrical knowledge preferred.',
+  'careers.job.english': 'English Specialist',
+  'careers.job.english.desc': 'Handles overseas client communication, document translation, and international business coordination. TEM-8 or equivalent required.',
+  'careers.job.process': 'Process Technician',
+  'careers.job.process.desc': 'Optimizes wet wipe production processes and resolves technical issues on the production floor. Chemistry/materials background preferred.',
+  'careers.job.rnd': 'R&D Engineer',
+  'careers.job.rnd.desc': 'Develops new formulations and products — from formula design and stability testing to process scale-up. Master\'s degree preferred.',
+  'careers.job.qc': 'QC Supervisor',
+  'careers.job.qc.desc': 'Manages the quality management system and leads the team in incoming, in-process and final inspections. Familiar with ISO/GMP systems.',
+  'careers.job.design': 'Product Design Director',
+  'careers.job.design.desc': 'Leads product line planning and design strategy, managing the team from concept through mass production.',
+  'careers.job.finance': 'Finance Manager',
+  'careers.job.finance.desc': 'Oversees financial accounting, budget management, tax planning and financial analysis. CPA or intermediate certification required.',
+  'careers.job.apply': 'Apply for this position',
+
+  'careers.benefits.eyebrow': 'BENEFITS',
+  'careers.benefits.title': 'Benefits &',
+  'careers.benefits.title.highlight': 'Perks',
+
+  'careers.benefit.insurance': 'Social Insurance',
+  'careers.benefit.bonus': 'Performance Bonus',
+  'careers.benefit.meal': 'Meal Allowance',
+  'careers.benefit.phone': 'Phone Subsidy',
+  'careers.benefit.fuel': 'Fuel Allowance',
+  'careers.benefit.checkup': 'Annual Checkup',
+
+  'careers.cta.title': 'Submit Your Resume / Inquire About Positions',
+  'careers.cta.hr': 'HR Hotline: 0562-2201781',
+  'careers.cta.email': 'jieyahr@babywipes.com.cn',
+  'careers.cta.footer': 'Tongling Joyalways Biologic Technology Co., Ltd. · HR Department',
+
+  /* ---- 联系页 Contact ---- */
+  'contact.hero.badge': 'CONTACT US',
+  'contact.hero.title1': 'Contact',
+  'contact.hero.title2': 'Joyalways',
+  'contact.hero.desc': 'Product cooperation, OEM/ODM inquiries, investor relations, talent recruitment — we look forward to hearing from you.',
+  'contact.hero.phone': '0562-2201781',
+  'contact.hero.email': 'Send Email',
+
+  'contact.company': 'Tongling Joyalways Biologic Technology Co., Ltd.',
+  'contact.company.en': 'TONGLING JOYALWAYS BIO-TECHNOLOGY CO., LTD.',
+
+  'contact.address': 'Company Address',
+  'contact.address.detail': '528 Geological Avenue, Shizishan Economic Development Zone, Tongling, Anhui, China',
+  'contact.hotline': 'Hotline',
+  'contact.email': 'Email',
+  'contact.fax': 'Fax (Securities Affairs)',
+  'contact.fax.detail': '0562-6868001',
+
+  'contact.dept.overseas': 'Overseas Business',
+  'contact.dept.overseas.desc': 'International market expansion, OEM/ODM overseas cooperation',
+  'contact.dept.domestic': 'Domestic Business',
+  'contact.dept.domestic.desc': 'Domestic sales, brand partnerships, channel distribution',
+  'contact.dept.hr': 'Human Resources',
+  'contact.dept.hr.desc': 'Talent recruitment, career inquiries, employee relations',
+  'contact.dept.medical': 'Medical Devices',
+  'contact.dept.medical.desc': 'Medical device business cooperation, product inquiries',
+
+  'contact.depts.eyebrow': 'DEPARTMENTS',
+  'contact.depts.title': 'Contact by',
+  'contact.depts.title.highlight': 'Department',
+  'contact.depts.desc': 'Select the department that matches your needs and contact them directly.',
+
+  'contact.form.title': 'Online Inquiry',
+  'contact.form.desc': 'Fill out the form below and we will get back to you as soon as possible.',
+  'contact.form.name': 'Name',
+  'contact.form.phone': 'Phone',
+  'contact.form.message': 'Message',
+  'contact.form.placeholder.name': 'Your name',
+  'contact.form.placeholder.phone': 'For us to reach you',
+  'contact.form.placeholder.message': 'Briefly describe your needs, e.g. product cooperation, OEM, investor inquiry...',
+  'contact.form.privacy': 'We keep your information strictly confidential.',
+  'contact.form.submit': 'Submit',
+
+  /* ---- ESG 可持续发展 ---- */
+  'esg.green.title': 'Green Manufacturing',
+  'esg.green.desc': 'Clean energy and green processes for premium products, with FSC-certified materials and sustainable supply chains.',
+  'esg.energy.title': 'Energy & Emission',
+  'esg.energy.desc': 'Continuously optimizing production energy consumption and waste management — making the most of every resource.',
+  'esg.social.title': 'Social Responsibility',
+  'esg.social.desc': 'Giving back to the community, caring for employees, and practicing long-termism with corporate citizenship.',
+
+  /* ---- 服务国家/年销售额等 ---- */
+  'stats.years': 'Years',
+  'stats.sqm': 'm²+',
+  'stats.items': '+',
+  'stats.billion': 'Billion',
 }
 
 export type I18nKey = keyof typeof zh
