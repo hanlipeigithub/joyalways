@@ -175,6 +175,12 @@
 .float-slow { animation: float-y 7s ease-in-out infinite; }
 .float-slower { animation: float-y 11s ease-in-out infinite; }
 
+/* chatbot floating button */
+@keyframes chatbot-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
 /* pulsing map dot */
 @keyframes ping-soft {
   0% { transform: scale(1); opacity: 0.8; }

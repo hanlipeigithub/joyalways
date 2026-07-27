@@ -62,7 +62,7 @@ export default function ChatBot() {
 
   return (
     <>
-      {/* ===== 浮动按钮：带脉冲光环的3D机器人 ===== */}
+      {/* ===== 浮动按钮：带脉冲光环 + 漂浮动画的3D机器人 ===== */}
       {!open && (
         <button
           onClick={() => setOpen(true)}
@@ -73,6 +73,7 @@ export default function ChatBot() {
             background: 'none',
             border: 'none',
             padding: 0,
+            animation: 'chatbot-float 3s ease-in-out infinite',
             filter: `drop-shadow(0 0 ${pulse ? 25 : 10}px rgba(59,130,246,${pulse ? 0.6 : 0.3}))`,
           }}
         >
