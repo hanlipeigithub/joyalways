@@ -67,10 +67,10 @@ def local_path_for(url: str) -> str:
 
 
 def normalize_url(url: str) -> str:
-    """旧域名 babywipes.com.cn 的图片在 joyalways.com 同路径下可用，统一重写。"""
+    """旧域名 joyalways.com 的图片在 joyalways.com 同路径下可用，统一重写。"""
     url = urljoin(BASE, url)
     p = urlparse(url)
-    if "babywipes.com.cn" in p.netloc:
+    if "joyalways.com" in p.netloc:
         url = f"https://www.joyalways.com{p.path}"
         if p.query:
             url += f"?{p.query}"

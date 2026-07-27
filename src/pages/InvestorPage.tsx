@@ -16,10 +16,10 @@ const CNINFO_URL =
 /** 董秘联系方式（来源：原站抓取事实数据） */
 const CONTACT_ROWS = [
   { icon: Phone, label: '传真', value: '0562-6868001' },
-  { icon: Mail, label: '邮箱', value: 'zqb@babywipes.com.cn' },
+  { icon: Mail, label: '邮箱', value: 'zqb@joyalways.com' },
   { icon: MapPin, label: '地址', value: '安徽省铜陵市狮子山经济开发区铜井东路 1928 号' },
   { icon: Building2, label: '邮编', value: '244031' },
-  { icon: Globe, label: '网址', value: 'www.babywipes.com.cn' },
+  { icon: Globe, label: '网址', value: 'www.joyalways.com' },
 ]
 
 const KIND_TABS = ['全部', '年度报告', '半年度报告', '一季度报告', '三季度报告'] as const

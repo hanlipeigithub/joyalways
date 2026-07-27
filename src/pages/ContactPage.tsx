@@ -4,10 +4,10 @@ import { toast } from 'sonner'
 import { useI18n } from '@/lib/i18n'
 
 const DEPARTMENTS = [
-  { key: 'overseas', phone: '0562-2201781', email: 'amanda@babywipes.com.cn' },
-  { key: 'domestic', phone: '0562-2290789', email: 'alan@babywipes.com.cn' },
-  { key: 'hr', phone: '18555222899', email: 'jieyahr@babywipes.com.cn' },
-  { key: 'medical', phone: '18555222899', email: 'xsq@babywipes.com.cn' },
+  { key: 'overseas', phone: '0562-2201781', email: 'amanda@joyalways.com' },
+  { key: 'domestic', phone: '0562-2290789', email: 'alan@joyalways.com' },
+  { key: 'hr', phone: '0562-2201781', email: 'jieyahr@joyalways.com' },
+  { key: 'medical', phone: '18555222899', email: 'xsq@joyalways.com' },
 ]
 
 export default function ContactPage() {
@@ -54,7 +54,7 @@ export default function ContactPage() {
             <a href="tel:0562-2201781" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-sm text-white/80 backdrop-blur-sm transition-all hover:border-white/40 hover:text-white">
               <Phone size={14} /> {t('contact.hero.phone')}
             </a>
-            <a href="mailto:amanda@babywipes.com.cn" className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-blue-500/30 transition-all hover:bg-blue-700">
+            <a href="mailto:amanda@joyalways.com" className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-blue-500/30 transition-all hover:bg-blue-700">
               <Mail size={14} /> {t('contact.hero.email')}
             </a>
           </div>
@@ -83,7 +83,7 @@ export default function ContactPage() {
                     )},
                     { icon: Mail, label: t('contact.email'), content: (
                       <div className="space-y-0.5">
-                        {[['amanda@babywipes.com.cn', lang === 'en' ? 'Export: ' : '外销：'], ['alan@babywipes.com.cn', lang === 'en' ? 'Domestic: ' : '内销：'], ['jieyahr@babywipes.com.cn', lang === 'en' ? 'HR: ' : '人事：'], ['xsq@babywipes.com.cn', lang === 'en' ? 'Medical: ' : '医疗器械：']].map(([addr, label]) => (
+                        {[['amanda@joyalways.com', lang === 'en' ? 'Export: ' : '外销：'], ['alan@joyalways.com', lang === 'en' ? 'Domestic: ' : '内销：'], ['jieyahr@joyalways.com', lang === 'en' ? 'HR: ' : '人事：'], ['xsq@joyalways.com', lang === 'en' ? 'Medical: ' : '医疗器械：']].map(([addr, label]) => (
                           <a key={addr} href={`mailto:${addr}`} className="block text-sm text-gray-300 transition-colors hover:text-blue-400">{label}{addr}</a>
                         ))}
                       </div>

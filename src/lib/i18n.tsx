@@ -150,7 +150,7 @@ const zh = {
 
   'careers.cta.title': '投递简历 / 咨询岗位',
   'careers.cta.hr': '人事热线：0562-2201781',
-  'careers.cta.email': 'jieyahr@babywipes.com.cn',
+  'careers.cta.email': 'jieyahr@joyalways.com',
   'careers.cta.footer': '铜陵洁雅生物科技股份有限公司 · 人力资源部',
 
   /* ---- 联系页 Contact ---- */
@@ -354,7 +354,7 @@ const en: Record<keyof typeof zh, string> = {
 
   'careers.cta.title': 'Submit Your Resume / Inquire About Positions',
   'careers.cta.hr': 'HR Hotline: 0562-2201781',
-  'careers.cta.email': 'jieyahr@babywipes.com.cn',
+  'careers.cta.email': 'jieyahr@joyalways.com',
   'careers.cta.footer': 'Tongling Joyalways Biologic Technology Co., Ltd. · HR Department',
 
   /* ---- 联系页 Contact ---- */

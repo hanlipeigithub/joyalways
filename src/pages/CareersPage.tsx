@@ -72,7 +72,7 @@ export default function CareersPage() {
             <a href="#positions" className="group inline-flex items-center gap-2 rounded-full bg-blue-600 px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition-all hover:bg-blue-700 hover:shadow-xl">
               {t('careers.hero.cta1')} <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </a>
-            <a href="mailto:jieyahr@babywipes.com.cn" className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-8 py-3.5 text-sm font-medium text-white backdrop-blur-sm transition-all hover:border-white/40 hover:bg-white/15">
+            <a href="mailto:jieyahr@joyalways.com" className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-8 py-3.5 text-sm font-medium text-white backdrop-blur-sm transition-all hover:border-white/40 hover:bg-white/15">
               <Mail size={15} /> {t('careers.hero.cta2')}
             </a>
           </div>
@@ -137,7 +137,7 @@ export default function CareersPage() {
                   <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: expandedIndex === i ? '200px' : '0px', opacity: expandedIndex === i ? 1 : 0 }}>
                     <div className="border-t px-5 py-4" style={{ borderColor: '#1e293b' }}>
                       <p className="text-sm leading-relaxed text-gray-400">{jobDesc(job.key)}</p>
-                      <a href={`mailto:jieyahr@babywipes.com.cn?subject=${lang === 'en' ? 'Application for ' : '应聘'}${jobTitle(job.key)}`} className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium transition-colors" style={{ color: '#60a5fa' }}>{t('careers.job.apply')}</a>
+                      <a href={`mailto:jieyahr@joyalways.com?subject=${lang === 'en' ? 'Application for ' : '应聘'}${jobTitle(job.key)}`} className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium transition-colors" style={{ color: '#60a5fa' }}>{t('careers.job.apply')}</a>
                     </div>
                   </div>
                 </div>
@@ -172,7 +172,7 @@ export default function CareersPage() {
               <a href="tel:0562-2201781" className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm text-white/80 transition-all hover:border-white/40 hover:text-white" style={{ backgroundColor: '#1e293b' }}>
                 <Phone size={14} /> {t('careers.cta.hr')}
               </a>
-              <a href="mailto:jieyahr@babywipes.com.cn" className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:shadow-xl" style={{ backgroundColor: '#2563eb' }}>
+              <a href="mailto:jieyahr@joyalways.com" className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:shadow-xl" style={{ backgroundColor: '#2563eb' }}>
                 <Mail size={14} /> {t('careers.cta.email')}
               </a>
             </div>
