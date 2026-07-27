@@ -73,10 +73,10 @@ export default function ContactPage() {
                 <p className="mt-1 text-[10px] tracking-[0.25em] text-gray-500">{t('contact.company.en')}</p>
                 <div className="mt-8 space-y-5">
                   {[
-                    { icon: MapPin, label: t('contact.address'), content: t('contact.address.detail') },
+                    { icon: MapPin, label: t('contact.address'), content: <p className="text-sm text-gray-300">{t('contact.address.detail')}</p> },
                     { icon: Phone, label: t('contact.hotline'), content: (
                       <div className="space-y-0.5">
-                        {[['0562-2201781', lang === 'en' ? 'Export: ' : '外销：'], ['0562-2201989', lang === 'en' ? 'Domestic: ' : '内销：'], ['0562-2290789', lang === 'en' ? 'Domestic: ' : '内销：'], ['18555222899', lang === 'en' ? 'HR: ' : '人力资源：']].map(([num, label]) => (
+                        {[['0562-2201781', lang === 'en' ? 'Export: ' : '外销：'], ['0562-2201989', lang === 'en' ? 'Domestic: ' : '内销：'], ['0562-2290789', lang === 'en' ? 'Domestic: ' : '内销：'], ['0562-2201781', lang === 'en' ? 'HR: ' : '人力资源：']].map(([num, label]) => (
                           <a key={num} href={`tel:${num}`} className="block text-sm text-gray-300 transition-colors hover:text-blue-400">{label}{num}</a>
                         ))}
                       </div>
