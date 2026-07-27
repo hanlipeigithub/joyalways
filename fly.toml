@@ -1,0 +1,15 @@
+# fly.toml — 洁雅股份官网
+app = "joyalways-web"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = false
+  min_machines_running = 1
+
+[[mounts]]
+  source = "joya_data"
+  destination = "/app/server/data"
