@@ -1,16 +1,11 @@
-// CMS API：以 Vite 中间件形式挂在 dev server 内（/api/*，无第二进程）
-// 注意：/api/cninfo 由 vite proxy 处理，本中间件只匹配自身路由，其余 next() 放行
+// CMS API：JSON 文件数据库（零依赖）
 import {
   db, seedAll, verifyPassword, createSession, findSessionUser, deleteSession,
 } from './db.js'
 import { initKnowledgeBase, generateAnswer } from './chat.js'
 
 const TYPES = ['news', 'notices', 'products']
-const BODY_LIMIT = 2 * 1024 * 1024 // 2MB
-
-/* ------------------------------------------------------------------ */
-/* 工具                                                                */
-/* ------------------------------------------------------------------ */
+const BODY_LIMIT = 2 * 1024 * 1024
 
 function send(res, status, obj) {
   const body = JSON.stringify(obj)
@@ -24,20 +19,13 @@ function readBody(req) {
     let size = 0
     req.on('data', (c) => {
       size += c.length
-      if (size > BODY_LIMIT) {
-        reject(new Error('请求体过大（上限 2MB）'))
-        req.destroy()
-        return
-      }
+      if (size > BODY_LIMIT) { reject(new Error('请求体过大')); req.destroy(); return }
       chunks.push(c)
     })
     req.on('end', () => {
       if (chunks.length === 0) return resolve({})
-      try {
-        resolve(JSON.parse(Buffer.concat(chunks).toString('utf-8')))
-      } catch {
-        reject(new Error('JSON 解析失败'))
-      }
+      try { resolve(JSON.parse(Buffer.concat(chunks).toString('utf-8'))) }
+      catch { reject(new Error('JSON 解析失败')) }
     })
     req.on('error', reject)
   })
@@ -46,10 +34,7 @@ function readBody(req) {
 function requireAuth(req, res) {
   const m = /^Bearer\s+(.+)$/.exec(req.headers.authorization ?? '')
   const session = m ? findSessionUser(m[1]) : null
-  if (!session) {
-    send(res, 401, { error: '未登录或会话已过期' })
-    return null
-  }
+  if (!session) { send(res, 401, { error: '未登录或会话已过期' }); return null }
   return session
 }
 
@@ -58,89 +43,62 @@ function newId(type) {
 }
 
 function nextSort(type) {
-  return (db.prepare(`SELECT COALESCE(MAX(sort), -1) + 1 AS s FROM ${type}`).get().s)
+  const items = db.table(type)
+  return items.length === 0 ? 0 : Math.max(...items.map(r => r.sort ?? -1)) + 1
 }
-
-function bool(v) {
-  return v ? 1 : 0
-}
-
-/* ------------------------------------------------------------------ */
-/* 行 → API 对象（产品 description → desc 映射，保持前端字段不变）        */
-/* ------------------------------------------------------------------ */
 
 function rowToItem(type, r) {
-  const base = {
-    id: r.id,
-    title: r.title,
-    date: r.date ?? '',
-    summary: r.summary ?? '',
-    bodyHtml: r.bodyHtml ?? '',
-    cover: r.cover ?? '',
-    pinned: !!r.pinned,
-    hidden: !!r.hidden,
-    sort: r.sort,
-  }
+  const base = { id: r.id, title: r.title, date: r.date ?? '', summary: r.summary ?? '', bodyHtml: r.bodyHtml ?? '', cover: r.cover ?? '', pinned: !!r.pinned, hidden: !!r.hidden, sort: r.sort }
   if (type === 'notices') return { ...base, pdf: r.pdf ?? '' }
   if (type === 'products') {
     let images = []
-    try { images = JSON.parse(r.images || '[]') } catch { /* ignore */ }
-    return {
-      id: r.id, title: r.title, category: r.category ?? 'wipes', scene: r.scene ?? '',
-      desc: r.description ?? '', categories: r.categories ?? '', bodyHtml: r.bodyHtml ?? '',
-      cover: r.cover ?? '', images, pinned: !!r.pinned, hidden: !!r.hidden, sort: r.sort,
-    }
+    try { images = JSON.parse(typeof r.images === 'string' ? r.images : '[]') } catch {}
+    return { id: r.id, title: r.title, category: r.category ?? 'wipes', scene: r.scene ?? '', desc: r.description ?? '', categories: r.categories ?? '', bodyHtml: r.bodyHtml ?? '', cover: r.cover ?? '', images, pinned: !!r.pinned, hidden: !!r.hidden, sort: r.sort }
   }
   return base
 }
 
 function listRows(type, includeHidden) {
-  const where = includeHidden ? '' : 'WHERE hidden = 0'
-  const order = type === 'products'
-    ? 'ORDER BY pinned DESC, sort ASC'
-    : 'ORDER BY pinned DESC, date DESC, sort ASC'
-  return db.prepare(`SELECT * FROM ${type} ${where} ${order}`).all()
+  const items = db.table(type)
+  let filtered = includeHidden ? items : items.filter(r => !r.hidden)
+  if (type === 'products') {
+    filtered.sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) || (a.sort ?? 0) - (b.sort ?? 0))
+  } else {
+    filtered.sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) || (b.date || '').localeCompare(a.date || '') || (a.sort ?? 0) - (b.sort ?? 0))
+  }
+  return filtered
 }
-
-/* ------------------------------------------------------------------ */
-/* CRUD                                                                */
-/* ------------------------------------------------------------------ */
 
 function insertItem(type, b) {
   const id = newId(type)
   const sort = nextSort(type)
-  if (type === 'news') {
-    db.prepare('INSERT INTO news (id, title, date, summary, bodyHtml, cover, pinned, hidden, sort) VALUES (?,?,?,?,?,?,?,?,?)')
-      .run(id, b.title, b.date ?? '', b.summary ?? '', b.bodyHtml ?? '', b.cover ?? '', bool(b.pinned), bool(b.hidden), sort)
-  } else if (type === 'notices') {
-    db.prepare('INSERT INTO notices (id, title, date, summary, bodyHtml, cover, pdf, pinned, hidden, sort) VALUES (?,?,?,?,?,?,?,?,?,?)')
-      .run(id, b.title, b.date ?? '', b.summary ?? '', b.bodyHtml ?? '', b.cover ?? '', b.pdf ?? '', bool(b.pinned), bool(b.hidden), sort)
-  } else {
-    db.prepare('INSERT INTO products (id, title, category, scene, description, categories, bodyHtml, cover, images, pinned, hidden, sort) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)')
-      .run(id, b.title, b.category ?? 'wipes', b.scene ?? '', b.desc ?? '', b.categories ?? '',
-        b.bodyHtml ?? '', b.cover ?? '', JSON.stringify(Array.isArray(b.images) ? b.images : []),
-        bool(b.pinned), bool(b.hidden), sort)
+  const item = { id, title: b.title, date: b.date ?? '', summary: b.summary ?? '', bodyHtml: b.bodyHtml ?? '', cover: b.cover ?? '', pinned: b.pinned ? 1 : 0, hidden: b.hidden ? 1 : 0, sort }
+  if (type === 'notices') { item.pdf = b.pdf ?? '' }
+  if (type === 'products') {
+    Object.assign(item, { category: b.category ?? 'wipes', scene: b.scene ?? '', description: b.desc ?? '', categories: b.categories ?? '', images: JSON.stringify(Array.isArray(b.images) ? b.images : []) })
   }
+  db.insert(type, item)
   return id
 }
 
 function updateItem(type, id, b) {
-  if (type === 'news') {
-    return db.prepare('UPDATE news SET title=?, date=?, summary=?, bodyHtml=?, cover=?, pinned=?, hidden=? WHERE id=?')
-      .run(b.title, b.date ?? '', b.summary ?? '', b.bodyHtml ?? '', b.cover ?? '', bool(b.pinned), bool(b.hidden), id).changes
+  const updates = { title: b.title }
+  if (b.date !== undefined) updates.date = b.date
+  if (b.summary !== undefined) updates.summary = b.summary
+  if (b.bodyHtml !== undefined) updates.bodyHtml = b.bodyHtml
+  if (b.cover !== undefined) updates.cover = b.cover
+  if (b.pinned !== undefined) updates.pinned = b.pinned ? 1 : 0
+  if (b.hidden !== undefined) updates.hidden = b.hidden ? 1 : 0
+  if (type === 'notices' && b.pdf !== undefined) updates.pdf = b.pdf
+  if (type === 'products') {
+    if (b.category !== undefined) updates.category = b.category
+    if (b.scene !== undefined) updates.scene = b.scene
+    if (b.desc !== undefined) updates.description = b.desc
+    if (b.categories !== undefined) updates.categories = b.categories
+    if (b.images !== undefined) updates.images = JSON.stringify(Array.isArray(b.images) ? b.images : [])
   }
-  if (type === 'notices') {
-    return db.prepare('UPDATE notices SET title=?, date=?, summary=?, bodyHtml=?, cover=?, pdf=?, pinned=?, hidden=? WHERE id=?')
-      .run(b.title, b.date ?? '', b.summary ?? '', b.bodyHtml ?? '', b.cover ?? '', b.pdf ?? '', bool(b.pinned), bool(b.hidden), id).changes
-  }
-  return db.prepare('UPDATE products SET title=?, category=?, scene=?, description=?, categories=?, bodyHtml=?, cover=?, images=?, pinned=?, hidden=? WHERE id=?')
-    .run(b.title, b.category ?? 'wipes', b.scene ?? '', b.desc ?? '', b.categories ?? '', b.bodyHtml ?? '',
-      b.cover ?? '', JSON.stringify(Array.isArray(b.images) ? b.images : []), bool(b.pinned), bool(b.hidden), id).changes
+  return db.update(type, r => r.id === id, updates)
 }
-
-/* ------------------------------------------------------------------ */
-/* 路由                                                                */
-/* ------------------------------------------------------------------ */
 
 async function handle(req, res) {
   const url = new URL(req.url, 'http://localhost')
@@ -150,7 +108,7 @@ async function handle(req, res) {
   /* ---- 认证 ---- */
   if (path === '/api/auth/login' && method === 'POST') {
     const b = await readBody(req)
-    const user = db.prepare('SELECT * FROM admin_users WHERE username = ?').get(String(b.username ?? ''))
+    const user = db.findOne('admin_users', u => u.username === String(b.username ?? ''))
     if (!user || !verifyPassword(b.password ?? '', user.salt, user.pass_hash)) {
       return send(res, 401, { error: '用户名或密码错误' })
     }
@@ -168,23 +126,22 @@ async function handle(req, res) {
     return send(res, 200, { username: session.username })
   }
 
-  /* ---- 公开内容（前台） ---- */
+  /* ---- 公开内容 ---- */
   if (path === '/api/content' && method === 'GET') {
     return send(res, 200, {
-      news: listRows('news', false).map((r) => rowToItem('news', r)),
-      notices: listRows('notices', false).map((r) => rowToItem('notices', r)),
-      products: listRows('products', false).map((r) => rowToItem('products', r)),
+      news: listRows('news', false).map(r => rowToItem('news', r)),
+      notices: listRows('notices', false).map(r => rowToItem('notices', r)),
+      products: listRows('products', false).map(r => rowToItem('products', r)),
     })
   }
 
-  /* ---- AI 智能助手 ---- */
+  /* ---- AI 助手 ---- */
   if (path === '/api/chat' && method === 'POST') {
     const b = await readBody(req)
     const question = String(b.question || '').trim()
     if (!question) return send(res, 400, { error: '请输入问题' })
     initKnowledgeBase()
-    const result = generateAnswer(question)
-    return send(res, 200, result)
+    return send(res, 200, generateAnswer(question))
   }
 
   /* ---- 管理端 ---- */
@@ -201,13 +158,13 @@ async function handle(req, res) {
     if (!requireAuth(req, res)) return
 
     if (method === 'GET' && !id) {
-      return send(res, 200, { items: listRows(type, true).map((r) => rowToItem(type, r)) })
+      return send(res, 200, { items: listRows(type, true).map(r => rowToItem(type, r)) })
     }
     if (method === 'POST' && !id) {
       const b = await readBody(req)
       if (!b.title || !String(b.title).trim()) return send(res, 400, { error: '标题不能为空' })
       const newItemId = insertItem(type, { ...b, title: String(b.title).trim() })
-      const row = db.prepare(`SELECT * FROM ${type} WHERE id = ?`).get(newItemId)
+      const row = db.findOne(type, r => r.id === newItemId)
       return send(res, 200, { item: rowToItem(type, row) })
     }
     if (method === 'PUT' && id) {
@@ -215,23 +172,19 @@ async function handle(req, res) {
       if (!b.title || !String(b.title).trim()) return send(res, 400, { error: '标题不能为空' })
       const changes = updateItem(type, id, { ...b, title: String(b.title).trim() })
       if (changes === 0) return send(res, 404, { error: '内容不存在' })
-      const row = db.prepare(`SELECT * FROM ${type} WHERE id = ?`).get(id)
+      const row = db.findOne(type, r => r.id === id)
       return send(res, 200, { item: rowToItem(type, row) })
     }
     if (method === 'DELETE' && id) {
-      const changes = db.prepare(`DELETE FROM ${type} WHERE id = ?`).run(id).changes
+      const changes = db.delete(type, r => r.id === id)
       if (changes === 0) return send(res, 404, { error: '内容不存在' })
       return send(res, 200, { ok: true })
     }
     return send(res, 405, { error: 'Method Not Allowed' })
   }
 
-  return false // 未匹配，放行（/api/cninfo 等交给 proxy）
+  return false
 }
-
-/* ------------------------------------------------------------------ */
-/* Vite 插件                                                           */
-/* ------------------------------------------------------------------ */
 
 export function cmsApiPlugin() {
   return {
@@ -239,16 +192,11 @@ export function cmsApiPlugin() {
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         if (!req.url || !req.url.startsWith('/api/')) return next()
-        // /api/cninfo 代理路由直接放行
         if (req.url.startsWith('/api/cninfo')) return next()
-        handle(req, res)
-          .then((handled) => {
-            if (handled === false) next()
-          })
-          .catch((err) => {
-            if (!res.headersSent) send(res, 500, { error: err?.message || '服务器内部错误' })
-            else res.end()
-          })
+        handle(req, res).then(handled => { if (handled === false) next() }).catch(err => {
+          if (!res.headersSent) send(res, 500, { error: err?.message || '服务器内部错误' })
+          else res.end()
+        })
       })
     },
   }

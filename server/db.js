@@ -1,74 +1,94 @@
-// CMS 数据库层：Node 内置 node:sqlite（无原生依赖）
-// 数据库文件 server/data/cms.db，首次启动自动建表 + 从 src/data/*.json 种子导入
-import { DatabaseSync } from 'node:sqlite'
+// CMS 数据存储层：JSON 文件数据库（零依赖，兼容所有 Node 版本）
 import { randomBytes, scryptSync, timingSafeEqual } from 'node:crypto'
-import { mkdirSync, readFileSync } from 'node:fs'
+import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url))
 const DATA_DIR = path.join(ROOT, 'data')
-const DB_PATH = path.join(DATA_DIR, 'cms.db')
+const DB_PATH = path.join(DATA_DIR, 'cms.json')
 
 mkdirSync(DATA_DIR, { recursive: true })
 
-export const db = new DatabaseSync(DB_PATH)
+// ──── JSON 数据库引擎 ────
+class JsonDB {
+  constructor(filePath) {
+    this.filePath = filePath
+    this.data = { news: [], notices: [], products: [], admin_users: [], sessions: [] }
+    this.load()
+  }
 
-/* ------------------------------------------------------------------ */
-/* 建表                                                                */
-/* ------------------------------------------------------------------ */
+  load() {
+    try {
+      if (existsSync(this.filePath)) {
+        this.data = JSON.parse(readFileSync(this.filePath, 'utf-8'))
+      }
+    } catch {}
+  }
 
-db.exec(`
-CREATE TABLE IF NOT EXISTS news (
-  id TEXT PRIMARY KEY,
-  title TEXT NOT NULL,
-  date TEXT DEFAULT '',
-  summary TEXT DEFAULT '',
-  bodyHtml TEXT DEFAULT '',
-  cover TEXT DEFAULT '',
-  pinned INTEGER DEFAULT 0,
-  hidden INTEGER DEFAULT 0,
-  sort INTEGER DEFAULT 0
-);
-CREATE TABLE IF NOT EXISTS notices (
-  id TEXT PRIMARY KEY,
-  title TEXT NOT NULL,
-  date TEXT DEFAULT '',
-  summary TEXT DEFAULT '',
-  bodyHtml TEXT DEFAULT '',
-  cover TEXT DEFAULT '',
-  pdf TEXT DEFAULT '',
-  pinned INTEGER DEFAULT 0,
-  hidden INTEGER DEFAULT 0,
-  sort INTEGER DEFAULT 0
-);
-CREATE TABLE IF NOT EXISTS products (
-  id TEXT PRIMARY KEY,
-  title TEXT NOT NULL,
-  category TEXT DEFAULT 'wipes',
-  scene TEXT DEFAULT '',
-  description TEXT DEFAULT '',
-  categories TEXT DEFAULT '',
-  bodyHtml TEXT DEFAULT '',
-  cover TEXT DEFAULT '',
-  images TEXT DEFAULT '[]',
-  pinned INTEGER DEFAULT 0,
-  hidden INTEGER DEFAULT 0,
-  sort INTEGER DEFAULT 0
-);
-CREATE TABLE IF NOT EXISTS admin_users (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  username TEXT UNIQUE NOT NULL,
-  pass_hash TEXT NOT NULL,
-  salt TEXT NOT NULL
-);
-CREATE TABLE IF NOT EXISTS sessions (
-  token TEXT PRIMARY KEY,
-  user_id INTEGER NOT NULL,
-  created_at INTEGER NOT NULL,
-  expires_at INTEGER NOT NULL
-);
-`)
+  save() {
+    writeFileSync(this.filePath, JSON.stringify(this.data, null, 2), 'utf-8')
+  }
+
+  // table(name) → 返回该表数组引用
+  table(name) {
+    if (!this.data[name]) this.data[name] = []
+    return this.data[name]
+  }
+
+  // find: 条件查询，返回第一条
+  findOne(tableName, predicate) {
+    return this.table(tableName).find(predicate) || null
+  }
+
+  // filter: 条件查询，返回数组
+  find(tableName, predicate) {
+    return this.table(tableName).filter(predicate)
+  }
+
+  // insert: 插入一条
+  insert(tableName, item) {
+    this.table(tableName).push(item)
+    this.save()
+  }
+
+  // update: 更新匹配的第一条
+  update(tableName, predicate, updates) {
+    const items = this.table(tableName)
+    const idx = items.findIndex(predicate)
+    if (idx >= 0) {
+      items[idx] = { ...items[idx], ...updates }
+      this.save()
+      return 1
+    }
+    return 0
+  }
+
+  // delete: 删除匹配的第一条
+  delete(tableName, predicate) {
+    const items = this.table(tableName)
+    const idx = items.findIndex(predicate)
+    if (idx >= 0) {
+      items.splice(idx, 1)
+      this.save()
+      return 1
+    }
+    return 0
+  }
+
+  // count
+  count(tableName) {
+    return this.table(tableName).length
+  }
+
+  // clear
+  clear(tableName) {
+    this.data[tableName] = []
+    this.save()
+  }
+}
+
+export const db = new JsonDB(DB_PATH)
 
 /* ------------------------------------------------------------------ */
 /* 密码 / 会话                                                         */
@@ -84,84 +104,66 @@ export function verifyPassword(password, salt, expectHash) {
   return actual.length === expect.length && timingSafeEqual(actual, expect)
 }
 
-const SESSION_TTL = 7 * 24 * 3600 * 1000 // 7 天
+const SESSION_TTL = 7 * 24 * 3600 * 1000
 
 export function createSession(userId) {
   const token = randomBytes(32).toString('hex')
   const now = Date.now()
-  db.prepare('INSERT INTO sessions (token, user_id, created_at, expires_at) VALUES (?, ?, ?, ?)')
-    .run(token, userId, now, now + SESSION_TTL)
+  db.insert('sessions', { token, user_id: userId, created_at: now, expires_at: now + SESSION_TTL })
   return token
 }
 
 export function findSessionUser(token) {
   if (!token) return null
-  const row = db
-    .prepare(
-      `SELECT s.token, u.id AS user_id, u.username
-       FROM sessions s JOIN admin_users u ON u.id = s.user_id
-       WHERE s.token = ? AND s.expires_at > ?`,
-    )
-    .get(token, Date.now())
-  return row ?? null
+  const row = db.findOne('sessions', s => s.token === token && s.expires_at > Date.now())
+  if (!row) return null
+  const user = db.findOne('admin_users', u => u.id === row.user_id)
+  return user ? { token: row.token, user_id: user.id, username: user.username } : null
 }
 
 export function deleteSession(token) {
-  db.prepare('DELETE FROM sessions WHERE token = ?').run(token)
+  db.delete('sessions', s => s.token === token)
 }
 
 /* ------------------------------------------------------------------ */
-/* 种子导入（表为空才导）                                                */
+/* 种子导入                                                             */
 /* ------------------------------------------------------------------ */
 
 function readJson(rel) {
   return JSON.parse(readFileSync(path.join(ROOT, '..', 'src', 'data', rel), 'utf-8'))
 }
 
-function tableEmpty(name) {
-  return db.prepare(`SELECT COUNT(*) AS c FROM ${name}`).get().c === 0
-}
-
 export function seedAll(force = false) {
-  if (force || tableEmpty('news')) {
+  if (force || db.count('news') === 0) {
     const news = readJson('news.json')
-    const stmt = db.prepare(
-      'INSERT OR REPLACE INTO news (id, title, date, summary, bodyHtml, cover, pinned, hidden, sort) VALUES (?, ?, ?, ?, ?, ?, 0, 0, ?)',
-    )
-    db.prepare('DELETE FROM news').run()
-    news.forEach((n, i) =>
-      stmt.run(String(n.id), n.title ?? '', n.date ?? '', n.summary ?? '', n.bodyHtml ?? '', n.cover ?? '', i),
-    )
+    db.clear('news')
+    news.forEach((n, i) => db.insert('news', {
+      id: String(n.id), title: n.title ?? '', date: n.date ?? '', summary: n.summary ?? '',
+      bodyHtml: n.bodyHtml ?? '', cover: n.cover ?? '', pinned: 0, hidden: 0, sort: i,
+    }))
   }
-  if (force || tableEmpty('notices')) {
+  if (force || db.count('notices') === 0) {
     const notices = readJson('notices.json')
-    const stmt = db.prepare(
-      'INSERT OR REPLACE INTO notices (id, title, date, summary, bodyHtml, cover, pdf, pinned, hidden, sort) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0, ?)',
-    )
-    db.prepare('DELETE FROM notices').run()
-    notices.forEach((n, i) =>
-      stmt.run(String(n.id), n.title ?? '', n.date ?? '', n.summary ?? '', n.bodyHtml ?? '', n.cover ?? '', n.pdf ?? '', i),
-    )
+    db.clear('notices')
+    notices.forEach((n, i) => db.insert('notices', {
+      id: String(n.id), title: n.title ?? '', date: n.date ?? '', summary: n.summary ?? '',
+      bodyHtml: n.bodyHtml ?? '', cover: n.cover ?? '', pdf: n.pdf ?? '', pinned: 0, hidden: 0, sort: i,
+    }))
   }
-  if (force || tableEmpty('products')) {
+  if (force || db.count('products') === 0) {
     const products = readJson('products.json').items ?? []
-    const stmt = db.prepare(
-      `INSERT OR REPLACE INTO products (id, title, category, scene, description, categories, bodyHtml, cover, images, pinned, hidden, sort)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, ?)`,
-    )
-    db.prepare('DELETE FROM products').run()
-    products.forEach((p, i) =>
-      stmt.run(
-        String(p.id), p.title ?? '', p.category ?? 'wipes', p.scene ?? '',
-        p.desc ?? p.description ?? '', p.categories ?? '', p.bodyHtml ?? '',
-        p.cover ?? '', JSON.stringify(Array.isArray(p.images) ? p.images : []), i,
-      ),
-    )
+    db.clear('products')
+    products.forEach((p, i) => db.insert('products', {
+      id: String(p.id), title: p.title ?? '', category: p.category ?? 'wipes', scene: p.scene ?? '',
+      description: p.desc ?? p.description ?? '', categories: p.categories ?? '',
+      bodyHtml: p.bodyHtml ?? '', cover: p.cover ?? '',
+      images: JSON.stringify(Array.isArray(p.images) ? p.images : []),
+      pinned: 0, hidden: 0, sort: i,
+    }))
   }
-  if (tableEmpty('admin_users')) {
+  if (db.count('admin_users') === 0) {
     const salt = randomBytes(16).toString('hex')
-    db.prepare('INSERT INTO admin_users (username, pass_hash, salt) VALUES (?, ?, ?)')
-      .run('admin', hashPassword('joya2024', salt), salt)
+    db.insert('admin_users', { id: 1, username: 'admin', pass_hash: hashPassword('joya2024', salt), salt })
   }
 }
 
