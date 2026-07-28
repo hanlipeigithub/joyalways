@@ -165,6 +165,29 @@ export function seedAll(force = false) {
     const salt = randomBytes(16).toString('hex')
     db.insert('admin_users', { id: 1, username: 'admin', pass_hash: hashPassword('joya2024', salt), salt })
   }
+
+  // 初始化 banners（从 media.json 读取）
+  if (force || db.count('banners') === 0) {
+    try {
+      const media = readJson('media.json')
+      const banners = media.banners || []
+      db.clear('banners')
+      banners.forEach((src, i) => db.insert('banners', { id: String(i + 1), src, title: `Banner ${i + 1}`, sort: i }))
+    } catch {}
+  }
+
+  // 初始化 contact_info（从 pages.json _contact 读取）
+  if (force || db.count('contact_info') === 0) {
+    try {
+      const pages = readJson('pages.json')
+      const c = pages._contact || {}
+      db.clear('contact_info')
+      db.insert('contact_info', {
+        id: 'main', address: c.address || '', hotlines: c.hotlines || [],
+        emails: c.emails || [], fax: c.fax || '',
+      })
+    } catch {}
+  }
 }
 
 seedAll()

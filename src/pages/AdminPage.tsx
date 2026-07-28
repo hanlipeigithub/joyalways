@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Lock, Plus, Pencil, Trash2, Download, RotateCcw, LogOut,
-  Newspaper, FileText, Package, Database, Eye, EyeOff, Pin,
+  Newspaper, FileText, Package, Database, Eye, EyeOff, Pin, Phone,
 } from 'lucide-react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
@@ -176,10 +176,12 @@ function ContentTable({ kind, items, busy, onEdit, onDelete, onToggle }: ListPro
 
 /* ---------------- 主组件 ---------------- */
 
-const TABS: { key: Kind | 'data'; label: string; icon: typeof Newspaper }[] = [
+const TABS: { key: Kind | 'data' | 'banners' | 'contact'; label: string; icon: typeof Newspaper }[] = [
   { key: 'news', label: '新闻管理', icon: Newspaper },
   { key: 'notices', label: '公告管理', icon: FileText },
   { key: 'products', label: '产品管理', icon: Package },
+  { key: 'banners', label: 'Banner管理', icon: Eye },
+  { key: 'contact', label: '联系信息', icon: Phone },
   { key: 'data', label: '数据管理', icon: Database },
 ]
 
@@ -188,8 +190,8 @@ export default function AdminPage() {
   const [username, setUsername] = useState('')
   const [pwd, setPwd] = useState('')
   const [loggingIn, setLoggingIn] = useState(false)
-  const [tab, setTab] = useState<Kind | 'data'>('news')
-  const [lists, setLists] = useState<Record<Kind, AnyItem[]>>({ news: [], notices: [], products: [] })
+  const [tab, setTab] = useState<Kind | 'data' | 'banners' | 'contact'>('news')
+  const [lists, setLists] = useState<Record<string, AnyItem[]>>({ news: [], notices: [], products: [] })
   const [busy, setBusy] = useState(false)
   const [editing, setEditing] = useState<Draft | null>(null)
   const [saving, setSaving] = useState(false)
@@ -365,7 +367,7 @@ export default function AdminPage() {
     const exists = currentItems().some((it) => it.id === editing.id)
     setSaving(true)
     try {
-      const payload = draftToPayload(tab, editing)
+      const payload = draftToPayload(tab as Kind, editing)
       const res = exists
         ? await api<{ item: AnyItem }>(`/api/admin/${tab}/${editing.id}`, {
             method: 'PUT',
@@ -476,7 +478,13 @@ export default function AdminPage() {
 
           {/* 主区域 */}
           <div>
-            {tab !== 'data' ? (
+            {tab === 'banners' ? (
+              /* Banner 管理 */
+              <BannerManager />
+            ) : tab === 'contact' ? (
+              /* 联系信息管理 */
+              <ContactManager />
+            ) : tab !== 'data' ? (
               <>
                 <div className="mb-5 flex items-center justify-between">
                   <p className="text-sm text-joy-navy/50">
@@ -492,10 +500,10 @@ export default function AdminPage() {
                   </Button>
                 </div>
                 <ContentTable
-                  kind={tab}
+                  kind={tab as Kind}
                   items={currentItems()}
                   busy={busy}
-                  onEdit={(it) => setEditing(toDraft(tab, it))}
+                  onEdit={(it) => setEditing(toDraft(tab as Kind, it))}
                   onDelete={handleDelete}
                   onToggle={handleToggle}
                 />
@@ -531,8 +539,8 @@ export default function AdminPage() {
         </div>
       </div>
 
-      {/* 编辑对话框 */}
-      <Dialog open={editing !== null} onOpenChange={(open) => !open && setEditing(null)}>
+      {/* 编辑对话框 - 仅新闻/公告/产品使用 */}
+      <Dialog open={editing !== null && (tab === 'news' || tab === 'notices' || tab === 'products')} onOpenChange={(open) => !open && setEditing(null)}>
         <DialogContent className="max-h-[88vh] max-w-2xl overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{editing && currentItems().some((it) => it.id === editing.id) ? '编辑内容' : '新建内容'}</DialogTitle>
@@ -639,6 +647,183 @@ export default function AdminPage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+    </div>
+  )
+}
+
+/* ================================================================== */
+/* Banner 管理组件                                                     */
+/* ================================================================== */
+function BannerManager() {
+  const [banners, setBanners] = useState<{ id: string; src: string; title: string; sort: number }[]>([])
+  const [busy, setBusy] = useState(true)
+  const [newSrc, setNewSrc] = useState('')
+
+  const load = async () => {
+    setBusy(true)
+    try {
+      const res = await api<{ items: typeof banners }>('/api/admin/banners')
+      setBanners(res.items)
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : '加载失败')
+    }
+    setBusy(false)
+  }
+
+  useEffect(() => { load() }, [])
+
+  const addBanner = async () => {
+    if (!newSrc.trim()) return
+    try {
+      const res = await api<{ item: typeof banners[0] }>('/api/admin/banners', {
+        method: 'POST',
+        body: JSON.stringify({ src: newSrc.trim(), title: `Banner ${banners.length + 1}` }),
+      })
+      setBanners(prev => [...prev, res.item])
+      setNewSrc('')
+      toast.success('Banner 已添加')
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : '添加失败')
+    }
+  }
+
+  const deleteBanner = async (id: string) => {
+    try {
+      await api(`/api/admin/banners/${id}`, { method: 'DELETE' })
+      setBanners(prev => prev.filter(b => b.id !== id))
+      toast.success('已删除')
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : '删除失败')
+    }
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="rounded-2xl border border-joy-line bg-white p-7 shadow-soft">
+        <h3 className="font-semibold text-joy-navy">添加新 Banner</h3>
+        <p className="mt-1.5 text-sm text-joy-navy/50">输入图片路径（支持相对路径和完整 URL）</p>
+        <div className="mt-4 flex gap-3">
+          <Input value={newSrc} onChange={e => setNewSrc(e.target.value)} placeholder="/assets/site/couch/uploads/image/index/banner1.jpg" className="flex-1" />
+          <Button onClick={addBanner} className="rounded-full bg-joy-blue text-white hover:bg-joy-blue-deep shrink-0">
+            <Plus className="mr-1 h-4 w-4" /> 添加
+          </Button>
+        </div>
+      </div>
+
+      <div className="rounded-2xl border border-joy-line bg-white p-7 shadow-soft">
+        <h3 className="font-semibold text-joy-navy">Banner 列表</h3>
+        <p className="mt-1.5 text-sm text-joy-navy/50">共 {banners.length} 张，按序号排序展示在前台轮播</p>
+        <div className="mt-4 space-y-3">
+          {busy ? <p className="text-sm text-joy-navy/40">加载中...</p> : banners.map(b => (
+            <div key={b.id} className="flex items-center gap-4 rounded-xl border border-joy-line/60 p-3">
+              <img src={b.src} alt="" className="h-16 w-28 shrink-0 rounded-lg object-cover" style={{ backgroundColor: '#f1f5f9' }} />
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-joy-navy truncate">{b.title}</p>
+                <p className="text-xs text-joy-navy/40 truncate mt-0.5">{b.src}</p>
+              </div>
+              <Button variant="outline" size="sm" className="shrink-0 border-red-200 text-red-500 hover:bg-red-50" onClick={() => deleteBanner(b.id)}>
+                <Trash2 className="h-3.5 w-3.5" />
+              </Button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ================================================================== */
+/* 联系信息管理组件                                                     */
+/* ================================================================== */
+function ContactManager() {
+  const [form, setForm] = useState({ address: '', hotlines: ['', '', '', ''], emails: ['', '', '', ''], fax: '' })
+  const [busy, setBusy] = useState(true)
+  const [saving, setSaving] = useState(false)
+
+  const load = async () => {
+    try {
+      const res = await api<{ item: typeof form }>('/api/admin/contact_info')
+      if (res.item) {
+        const d = res.item
+        setForm({
+          address: d.address || '',
+          hotlines: d.hotlines?.length ? d.hotlines : ['', '', '', ''],
+          emails: d.emails?.length ? d.emails : ['', '', '', ''],
+          fax: d.fax || '',
+        })
+      }
+    } catch {}
+    setBusy(false)
+  }
+
+  useEffect(() => { load() }, [])
+
+  const save = async () => {
+    setSaving(true)
+    try {
+      await api('/api/admin/contact_info', {
+        method: 'PUT',
+        body: JSON.stringify(form),
+      })
+      toast.success('联系信息已更新')
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : '保存失败')
+    }
+    setSaving(false)
+  }
+
+  const setField = (field: string, idx: number | null, val: string) => {
+    setForm(prev => {
+      if (idx !== null && Array.isArray((prev as any)[field])) {
+        const arr = [...(prev as any)[field]]
+        arr[idx] = val
+        return { ...prev, [field]: arr }
+      }
+      return { ...prev, [field]: val }
+    })
+  }
+
+  if (busy) return <p className="text-sm text-joy-navy/40">加载中...</p>
+
+  return (
+    <div className="space-y-6">
+      <div className="rounded-2xl border border-joy-line bg-white p-7 shadow-soft">
+        <h3 className="mb-5 font-semibold text-joy-navy">公司地址</h3>
+        <Input value={form.address} onChange={e => setField('address', null, e.target.value)} placeholder="安徽省铜陵市..." />
+      </div>
+
+      <div className="rounded-2xl border border-joy-line bg-white p-7 shadow-soft">
+        <h3 className="mb-5 font-semibold text-joy-navy">热线电话</h3>
+        <div className="space-y-3">
+          {['外销热线', '内销热线1', '内销热线2', '人力资源'].map((label, i) => (
+            <div key={i} className="flex items-center gap-3">
+              <span className="w-20 shrink-0 text-sm text-joy-navy/60">{label}</span>
+              <Input value={form.hotlines[i] || ''} onChange={e => setField('hotlines', i, e.target.value)} placeholder="0562-XXXXXXX" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="rounded-2xl border border-joy-line bg-white p-7 shadow-soft">
+        <h3 className="mb-5 font-semibold text-joy-navy">邮箱</h3>
+        <div className="space-y-3">
+          {['外销', '内销', '人事', '医疗器械'].map((label, i) => (
+            <div key={i} className="flex items-center gap-3">
+              <span className="w-20 shrink-0 text-sm text-joy-navy/60">{label}</span>
+              <Input value={form.emails[i] || ''} onChange={e => setField('emails', i, e.target.value)} placeholder="xxx@joyalways.com" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="rounded-2xl border border-joy-line bg-white p-7 shadow-soft">
+        <h3 className="mb-5 font-semibold text-joy-navy">传真</h3>
+        <Input value={form.fax} onChange={e => setField('fax', null, e.target.value)} placeholder="0562-XXXXXXX" />
+      </div>
+
+      <Button onClick={save} disabled={saving} className="rounded-full bg-joy-blue px-8 text-white hover:bg-joy-blue-deep">
+        {saving ? '保存中…' : '保存全部修改'}
+      </Button>
     </div>
   )
 }

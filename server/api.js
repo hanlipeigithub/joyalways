@@ -5,6 +5,7 @@ import {
 import { initKnowledgeBase, generateAnswer } from './chat.js'
 
 const TYPES = ['news', 'notices', 'products']
+const ADMIN_TYPES = [...TYPES, 'banners', 'contact_info']
 const BODY_LIMIT = 2 * 1024 * 1024
 
 function send(res, status, obj) {
@@ -132,6 +133,8 @@ async function handle(req, res) {
       news: listRows('news', false).map(r => rowToItem('news', r)),
       notices: listRows('notices', false).map(r => rowToItem('notices', r)),
       products: listRows('products', false).map(r => rowToItem('products', r)),
+      banners: db.table('banners').sort((a, b) => a.sort - b.sort),
+      contact_info: db.findOne('contact_info', r => r.id === 'main') || null,
     })
   }
 
@@ -154,8 +157,55 @@ async function handle(req, res) {
   const mAdmin = /^\/api\/admin\/(\w+)(?:\/([^/]+))?$/.exec(path)
   if (mAdmin) {
     const [, type, id] = mAdmin
-    if (!TYPES.includes(type)) return send(res, 404, { error: '未知内容类型' })
+    if (!ADMIN_TYPES.includes(type)) return send(res, 404, { error: '未知内容类型' })
     if (!requireAuth(req, res)) return
+
+    // contact_info: 单个记录 PUT 更新
+    if (type === 'contact_info') {
+      if (method === 'GET') {
+        const row = db.findOne('contact_info', r => r.id === 'main') || {}
+        return send(res, 200, { item: row })
+      }
+      if (method === 'PUT') {
+        const b = await readBody(req)
+        db.update('contact_info', r => r.id === 'main', {
+          address: b.address ?? '', hotlines: b.hotlines ?? [],
+          emails: b.emails ?? [], fax: b.fax ?? '',
+        })
+        const row = db.findOne('contact_info', r => r.id === 'main')
+        return send(res, 200, { item: row })
+      }
+    }
+
+    // banners: 简化的 CRUD
+    if (type === 'banners') {
+      if (method === 'GET' && !id) {
+        return send(res, 200, { items: db.table('banners').sort((a, b) => a.sort - b.sort) })
+      }
+      if (method === 'POST' && !id) {
+        const b = await readBody(req)
+        const items = db.table('banners')
+        const newId = String(Date.now())
+        db.insert('banners', { id: newId, src: b.src ?? '', title: b.title ?? '', sort: items.length })
+        const row = db.findOne('banners', r => r.id === newId)
+        return send(res, 200, { item: row })
+      }
+      if (method === 'PUT' && id) {
+        const b = await readBody(req)
+        const updates = {}
+        if (b.src !== undefined) updates.src = b.src
+        if (b.title !== undefined) updates.title = b.title
+        if (b.sort !== undefined) updates.sort = b.sort
+        const changes = db.update('banners', r => r.id === id, updates)
+        if (changes === 0) return send(res, 404, { error: '内容不存在' })
+        const row = db.findOne('banners', r => r.id === id)
+        return send(res, 200, { item: row })
+      }
+      if (method === 'DELETE' && id) {
+        db.delete('banners', r => r.id === id)
+        return send(res, 200, { ok: true })
+      }
+    }
 
     if (method === 'GET' && !id) {
       return send(res, 200, { items: listRows(type, true).map(r => rowToItem(type, r)) })
