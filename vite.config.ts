@@ -6,7 +6,7 @@ import { cmsApiPlugin } from './server/api.js'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: './',
+  base: '/',
   plugins: [inspectAttr(), react(), cmsApiPlugin()],
   server: {
     port: 3000,
