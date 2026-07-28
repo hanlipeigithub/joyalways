@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { Toaster } from '@/components/ui/sonner'
 import Layout from '@/components/Layout'
 import HomePage from '@/pages/HomePage'
@@ -20,6 +20,9 @@ import ChatBot from '@/components/ChatBot'
 import NotFoundPage from '@/pages/NotFoundPage'
 
 export default function App() {
+  const location = useLocation()
+  const isAdmin = location.pathname.startsWith('/admin')
+
   return (
     <>
       <Routes>
@@ -43,7 +46,7 @@ export default function App() {
         <Route path="/admin" element={<AdminPage />} />
       </Routes>
       <Toaster position="top-center" richColors />
-      <ChatBot />
+      {!isAdmin && <ChatBot />}
     </>
   )
 }
